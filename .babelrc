@@ -1,0 +1,19 @@
+{
+  "plugins": ["@babel/syntax-dynamic-import"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "throwIfNamespace": false, // defaults to true
+        "runtime": "classic" // defaults to classic
+        // "importSource": "custom-jsx-library" // defaults to react (only in automatic runtime)
+      }
+    ]
+  ]
+}
