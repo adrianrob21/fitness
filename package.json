@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
-  "version": "1.0.0",
-  "description": "My webpack project",
+  "name": "fitness",
+  "version": "0.0.1",
+  "description": "A fitness app",
   "main": "index.js",
   "repository": "https://github.com/adrianrob21/web-arch",
   "author": "Adrian Rob",
