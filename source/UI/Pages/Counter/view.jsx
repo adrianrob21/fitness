@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { Button } from "Components";
+
 const Counter = ({ count, decrement, increment, resetCounter }) => (
   <>
     <div
@@ -8,10 +10,10 @@ const Counter = ({ count, decrement, increment, resetCounter }) => (
         "flex flex-col width-1/3 border justify-center items-center border-yellow-700"
       }
     >
-      <button onClick={increment.bind(null, null)}>Increment</button>
+      <Button onClick={increment.bind(null, null)} label={"Increment"} />
       <h1 className="text-4xl">{count}</h1>
-      <button onClick={decrement.bind(null, null)}>Decrement</button>
-      <button onClick={resetCounter.bind(null, null)}>Reset Counter</button>
+      <Button onClick={decrement.bind(null, null)} label={"Decrement"} />
+      <Button onClick={resetCounter.bind(null, null)} label={"Reset Counter"} />
     </div>
   </>
 );
