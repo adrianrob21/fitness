@@ -27,12 +27,16 @@ const config = {
         loader: "babel-loader",
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
       },
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
@@ -42,6 +46,7 @@ const config = {
     extensions: [".js", ".jsx", ".json"],
     alias: {
       //Source
+      Assets: path.resolve(__dirname, "./source/UI/Assets"),
       Components: path.resolve(__dirname, "./source/UI/Components"),
       Navigator: path.resolve(__dirname, "./source/UI/Navigator"),
       Pages: path.resolve(__dirname, "./source/UI/Pages"),

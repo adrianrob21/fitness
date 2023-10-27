@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import Repos from "Repos";
+import { Input } from "Components";
 
 const Photos = () => {
   useEffect(() => {
@@ -8,8 +9,11 @@ const Photos = () => {
   }, [Repos.pokemon.getPokemon]);
 
   return (
-    <div>
-      <h1>Here come the photos</h1>
+    <div className={"flex flex-col justify-center items-center w-full"}>
+      <div className={"w-3/12"}>
+        <h1 className={"text-white"}>Here come the photos</h1>
+        <Input iconName={"UserIcon"} placeholder={"Username"} />
+      </div>
     </div>
   );
 };

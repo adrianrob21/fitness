@@ -8,6 +8,7 @@ export default {
       lightGray: "#c2c2c2",
       primary: "#d71a00",
       white: "#FFFFFF",
+      black: "#000000",
     },
   },
   plugins: [],
