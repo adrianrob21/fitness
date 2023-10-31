@@ -62,6 +62,7 @@ const config = {
       Translations: path.resolve(__dirname, "./source/process/translations"),
 
       //Utils
+      Constants: path.resolve(__dirname, "./source/utils/generalConstants"),
       Helpers: path.resolve(__dirname, "./source/utils/helpers"),
     },
   },
