@@ -6,7 +6,6 @@ export default {
     {
       path: "/",
       element: <SignUp />,
-      label: "Counter",
     },
   ],
 };

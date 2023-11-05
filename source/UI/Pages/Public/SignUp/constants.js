@@ -3,6 +3,8 @@ import { INPUT_KEYS } from "Constants";
 
 export const WHITE_BOLD_TEXT = "text-white font-bold text-center";
 
+export const TEXT_WHITE = "text-white";
+
 export const INPUTS = [
   {
     label: I18n.t(`inputs:${INPUT_KEYS.FULL_NAME}.label`),
