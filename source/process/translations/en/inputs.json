@@ -1,19 +1,19 @@
 {
-  "createPassword": {
-    "label": "Create a password",
-    "placeholder": "PineapplePizzaIsYummy!42"
-  },
   "confirmPassword": {
     "label": "Confirm your password",
     "placeholder": "PineapplePizzaIsYummy!42"
   },
-  "fullname": {
-    "label": "Full name",
-    "placeholder": "John Doe"
+  "createPassword": {
+    "label": "Create a password",
+    "placeholder": "PineapplePizzaIsYummy!42"
   },
   "email": {
     "label": "Email",
     "placeholder": "chocolatechipmunk@example.com"
+  },
+  "fullname": {
+    "label": "Full name",
+    "placeholder": "John Doe"
   },
   "username": {
     "label": "Username",
