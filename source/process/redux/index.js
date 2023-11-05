@@ -14,16 +14,15 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import rootSaga from "Sagas";
 import Middlewares from "Middlewares";
+import { transientSlice } from "Reducers";
 
 const persistConfig = {
   key: "root",
   storage,
 };
 
-import { counterSlice } from "Reducers";
-
 const rootReducer = combineReducers({
-  counterSlice,
+  transientSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

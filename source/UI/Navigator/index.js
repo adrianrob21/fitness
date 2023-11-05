@@ -8,7 +8,7 @@ import { renderRoute } from "./pieces";
 
 const Navigator = () => (
   <BrowserRouter>
-    <Navbar />
+    {/* <Navbar /> */}
     <Routes>{routes.public.map(renderRoute)}</Routes>
   </BrowserRouter>
 );
