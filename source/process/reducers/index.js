@@ -1,3 +1,3 @@
-import counterSlice from "./counterSlice";
+import transientSlice from "./transientSlice";
 
-export { counterSlice };
+export { transientSlice };

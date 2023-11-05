@@ -1,8 +1,16 @@
 import PropTypes from "prop-types";
 
-import { Envelope, Eye, IdCard, SlashedEye, UserIcon } from "Assets/svgs";
+import {
+  Check,
+  Envelope,
+  Eye,
+  IdCard,
+  SlashedEye,
+  UserIcon,
+} from "Assets/svgs";
 
 const Icons = {
+  Check,
   Envelope,
   Eye,
   IdCard,

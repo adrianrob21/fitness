@@ -18,4 +18,6 @@ export const renderInput = ({
   placeholder,
   validationKey,
   iconName,
-}) => <Input {...{ iconName, label, placeholder, validationKey }} />;
+}) => (
+  <Input key={label} {...{ iconName, label, placeholder, validationKey }} />
+);

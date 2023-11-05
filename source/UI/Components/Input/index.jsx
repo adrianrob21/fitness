@@ -42,7 +42,7 @@ const Input = ({
       )}
 
       <input
-        type={!showPassword && showPasswordIcon && "password"}
+        type={!showPassword && showPasswordIcon ? "password" : ""}
         className={
           "bg-darkGray rounded-2xl pt-2 pb-2 pl-4 focus:outline-none text-sm w-full text-white"
         }

@@ -1,9 +1,5 @@
-import { all, takeLatest } from "redux-saga/effects";
-
-import { counterSliceTypes } from "Reducers/counterSlice";
-
-import { increment } from "./counter";
+import { all } from "redux-saga/effects";
 
 export default function* rootSaga() {
-  yield all([takeLatest(counterSliceTypes.increment, increment)]);
+  yield all([]);
 }
