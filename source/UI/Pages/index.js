@@ -1,4 +1,6 @@
-import Photos from "./Photos";
-import Counter from "./Counter";
+import { SignUp } from "./Public";
 
-export { Counter, Photos };
+export {
+  //PUBLIC
+  SignUp,
+};
