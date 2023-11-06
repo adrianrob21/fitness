@@ -16,7 +16,9 @@ module.exports = [
     rules: {
       // ... any rules you want
       'react/jsx-uses-react': 'error',
-      'react/jsx-uses-vars': 'error'
+      'react/jsx-uses-vars': 'error',
+      'react/prop-types': 'error',
+      'react/default-props-match-prop-types': 'error'
     }
     // ... others are omitted for brevity
   }
