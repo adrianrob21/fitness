@@ -9,7 +9,7 @@ import { BUTTON_VARIANTS } from './constants';
 const Button = ({
   disabled = false,
   fullWidth = true,
-  label = 2,
+  label = '',
   onClick = mock,
   processing = false,
   variant = 'default'
