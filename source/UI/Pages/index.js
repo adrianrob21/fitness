@@ -1,6 +1,7 @@
-import { SignUp } from "./Public";
+import { Login, SignUp } from './Public';
 
 export {
   //PUBLIC
-  SignUp,
+  Login,
+  SignUp
 };
