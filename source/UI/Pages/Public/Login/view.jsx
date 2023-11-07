@@ -6,7 +6,7 @@ import { PATHS } from 'Constants';
 import { Button } from 'Components';
 
 import { LOGIN_INPUTS } from './constants';
-import { PageLayout, PageHeader, PageFooter } from '../shared';
+import { PageFooter, PageHeader, PageLayout } from '../shared';
 
 const Login = ({ resetTransient = mock }) => (
   <PageLayout

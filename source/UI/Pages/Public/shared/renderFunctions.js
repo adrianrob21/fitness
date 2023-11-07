@@ -1,5 +1,5 @@
 import { Input } from 'Components';
 
-export const renderInput = ({ label, placeholder, validationKey, iconName }) => (
+export const renderInput = ({ iconName, label, placeholder, validationKey }) => (
   <Input key={label} {...{ iconName, label, placeholder, validationKey }} />
 );

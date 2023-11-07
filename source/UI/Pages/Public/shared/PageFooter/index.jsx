@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
-import { TEXT_WHITE } from 'Constants';
 import { mock } from 'Helpers';
+import { TEXT_WHITE } from 'Constants';
 
 import { onNavigate } from './functions';
 

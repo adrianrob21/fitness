@@ -6,7 +6,7 @@ import { PATHS } from 'Constants';
 import { Button, Checkbox } from 'Components';
 
 import { SIGNUP_INPUTS } from './constants';
-import { PageLayout, PageHeader, PageFooter } from '../shared';
+import { PageFooter, PageHeader, PageLayout } from '../shared';
 
 const SignUp = ({
   termsAccepted = false,

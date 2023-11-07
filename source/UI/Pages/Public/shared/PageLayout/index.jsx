@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { renderInput } from '../renderFunctions';
 import { classNames } from 'Helpers';
+
+import { renderInput } from '../renderFunctions';
 
 const PageLayout = ({
   Button = null,
