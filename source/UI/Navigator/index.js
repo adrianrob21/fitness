@@ -1,10 +1,10 @@
-import React from "react";
-import { BrowserRouter, Routes } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Routes } from 'react-router-dom';
 
-import { Navbar } from "Components";
+// import { Navbar } from "Components";
 
-import routes from "./routes";
-import { renderRoute } from "./pieces";
+import routes from './routes';
+import { renderRoute } from './pieces';
 
 const Navigator = () => (
   <BrowserRouter>
