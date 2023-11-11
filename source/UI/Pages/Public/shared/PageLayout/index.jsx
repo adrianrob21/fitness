@@ -10,25 +10,19 @@ const PageLayout = ({
   inputs = [],
   PageFooter = null,
   PageHeader = null
-}) => {
-  console.log(inputs);
-
-  return (
-    <main className={'pt-24 space-y-10'}>
-      <div className={'w-full flex flex-col items-center space-y-2 justify-center'}>
-        {PageHeader}
-      </div>
-      <form className={'min-w-4xl max-w-md pr-4 pl-4 shrink ml-auto mr-auto space-y-4'}>
-        {inputs.map(renderInput)}
-        <div className={classNames(!ExtraContent && 'h-4')}>{ExtraContent}</div>
-        {Button}
-      </form>
-      <div className={'w-full flex flex-col items-center justify-center'}>
-        {PageFooter}
-      </div>
-    </main>
-  );
-};
+}) => (
+  <main className={'pt-24 space-y-10'}>
+    <div className={'w-full flex flex-col items-center space-y-2 justify-center'}>
+      {PageHeader}
+    </div>
+    <form className={'min-w-4xl max-w-md pr-4 pl-4 shrink ml-auto mr-auto space-y-4'}>
+      {inputs.map(renderInput)}
+      <div className={classNames(!ExtraContent && 'h-4')}>{ExtraContent}</div>
+      {Button}
+    </form>
+    <div className={'w-full flex flex-col items-center justify-center'}>{PageFooter}</div>
+  </main>
+);
 
 PageLayout.propTypes = {
   Button: PropTypes.element,
