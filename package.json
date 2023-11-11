@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "0.2.0",
     "@reduxjs/toolkit": "1.9.6",
     "axios": "1.5.1",
+    "dotenv-webpack": "8.0.1",
     "eslint": "8.53.0",
     "husky": "8.0.3",
     "i18next": "23.5.1",
@@ -53,8 +54,8 @@
   },
   "scripts": {
     "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "build": "webpack --mode=production --node-env=production",
+    "build:prod": "webpack --mode=production",
+    "build": "webpack --mode=production",
     "test": "yarn test",
     "start": "webpack serve",
     "watch": "webpack --watch",
