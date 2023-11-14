@@ -6,7 +6,7 @@ import SignUp from './view';
 
 export default connect(
   state => ({
-    termsAccepted: state.transientSlice?.termsAccepted
+    ...state.transientSlice
   }),
   {
     resetTransient: transientSliceActions.reset,

@@ -73,10 +73,10 @@ module.exports = () => {
     config.mode = 'production';
 
     config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
-    config.plugins.push(new Dotenv({ ignoreStub: true, path: './.env.development' }));
-  } else {
     config.plugins.push(new Dotenv({ ignoreStub: true, path: './.env.production' }));
+  } else {
     config.mode = 'development';
+    config.plugins.push(new Dotenv({ ignoreStub: true, path: './.env.development' }));
   }
   return config;
 };

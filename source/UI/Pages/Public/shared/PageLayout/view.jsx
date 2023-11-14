@@ -8,6 +8,8 @@ const PageLayout = ({
   Button = null,
   ExtraContent = null,
   inputs = [],
+  updatePropsWithValidation = mock,
+  inputsValues = {},
   PageFooter = null,
   PageHeader = null
 }) => (
@@ -16,7 +18,7 @@ const PageLayout = ({
       {PageHeader}
     </div>
     <form className={'min-w-4xl max-w-md pr-4 pl-4 shrink ml-auto mr-auto space-y-4'}>
-      {inputs.map(renderInput)}
+      {inputs.map(renderInput.bind(null, { updatePropsWithValidation, inputsValues }))}
       <div className={classNames(!ExtraContent && 'h-4')}>{ExtraContent}</div>
       {Button}
     </form>
@@ -28,8 +30,10 @@ PageLayout.propTypes = {
   Button: PropTypes.element,
   ExtraContent: PropTypes.element,
   inputs: PropTypes.array,
+  inputsValues: PropTypes.object,
   PageFooter: PropTypes.element,
-  PageHeader: PropTypes.element
+  PageHeader: PropTypes.element,
+  updatePropsWithValidation: PropTypes.func
 };
 
 export default PageLayout;
