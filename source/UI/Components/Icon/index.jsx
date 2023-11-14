@@ -1,13 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import {
-  Check,
-  Envelope,
-  Eye,
-  IdCard,
-  SlashedEye,
-  UserIcon,
-} from "Assets/svgs";
+import { Check, Envelope, Eye, IdCard, SlashedEye, UserIcon } from 'Assets/svgs';
 
 const Icons = {
   Check,
@@ -15,17 +8,18 @@ const Icons = {
   Eye,
   IdCard,
   SlashedEye,
-  UserIcon,
+  UserIcon
 };
 
-const Icon = ({ iconName = "" }) => {
+const Icon = ({ color = 'fill-white', iconName = '' }) => {
   const CustomIcon = !iconName ? <></> : Icons[iconName];
 
-  return <CustomIcon />;
+  return <CustomIcon className={color} />;
 };
 
 Icon.propTypes = {
-  iconName: PropTypes.string,
+  color: PropTypes.string,
+  iconName: PropTypes.string
 };
 
 export default Icon;
