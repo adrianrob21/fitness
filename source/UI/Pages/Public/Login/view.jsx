@@ -8,14 +8,27 @@ import { inputsValidation, mock } from 'Helpers';
 import { LOGIN_INPUTS } from './constants';
 import { PageFooter, PageHeader, PageLayout } from '../shared';
 
-const Login = ({ resetTransient = mock, email = {}, password = {} }) => {
+const Login = ({
+  email = {},
+  login = mock,
+  password = {},
+  processing = false,
+  resetTransient = mock
+}) => {
   const allValid = [email, password].every(inputsValidation);
 
   return (
     <PageLayout
       PageHeader={<PageHeader title={I18n.t('login:title')} />}
       inputs={LOGIN_INPUTS}
-      Button={<Button disabled={!allValid} label={I18n.t('login:title')} />}
+      Button={
+        <Button
+          disabled={!allValid}
+          label={I18n.t('login:title')}
+          processing={processing}
+          onClick={login.bind(null, { email: email.value, password: password.value })}
+        />
+      }
       inputsValues={{ email, password }}
       PageFooter={
         <PageFooter
@@ -30,9 +43,11 @@ const Login = ({ resetTransient = mock, email = {}, password = {} }) => {
 };
 
 Login.propTypes = {
-  resetTransient: PropTypes.func,
   email: PropTypes.object,
-  password: PropTypes.object
+  login: PropTypes.func,
+  password: PropTypes.object,
+  processing: PropTypes.bool,
+  resetTransient: PropTypes.func
 };
 
 export default Login;

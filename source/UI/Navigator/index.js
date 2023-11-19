@@ -1,16 +1,10 @@
-import React from 'react';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-// import { Navbar } from "Components";
+import Navigator from './view';
 
-import routes from './routes';
-import { renderRoute } from './pieces';
-
-const Navigator = () => (
-  <BrowserRouter>
-    {/* <Navbar /> */}
-    <Routes>{routes.public.map(renderRoute)}</Routes>
-  </BrowserRouter>
-);
-
-export default Navigator;
+export default connect(
+  state => ({
+    userSession: state.userSlice?.userSession
+  }),
+  {}
+)(Navigator);

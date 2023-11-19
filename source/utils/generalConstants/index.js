@@ -50,6 +50,10 @@ export const WHITE_BOLD_TEXT = 'text-white font-bold text-center';
 export const TEXT_WHITE = 'text-white';
 
 export const PATHS = {
-  LOGIN: '/Login',
-  SIGN_UP: '/'
+  //PUBLIC
+  LOGIN: '/',
+  SIGN_UP: '/SignUp',
+
+  //PRIVATE
+  DASHBOARD: '/Dashboard'
 };

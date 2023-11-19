@@ -51,4 +51,6 @@ export const transientSliceTypes = {
   updatePropsWithValidation: transientSlice.actions.updatePropsWithValidation.type
 };
 
+export const transientSelector = state => state.transientSlice;
+
 export default transientSlice.reducer;

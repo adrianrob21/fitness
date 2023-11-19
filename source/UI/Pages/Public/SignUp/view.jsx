@@ -13,6 +13,8 @@ const SignUp = ({
   createPassword = {},
   email = {},
   fullname = {},
+  processing = false,
+  register = mock,
   resetTransient = mock,
   termsAccepted = false,
   updateTransientProps = mock,
@@ -44,7 +46,17 @@ const SignUp = ({
           })}
         />
       }
-      Button={<Button disabled={!allValid} label={I18n.t('signUp:title')} />}
+      Button={
+        <Button
+          disabled={!allValid}
+          processing={processing}
+          onClick={register.bind(null, {
+            email: email.value,
+            password: createPassword?.value
+          })}
+          label={I18n.t('signUp:title')}
+        />
+      }
       PageFooter={
         <PageFooter
           label={I18n.t('signUp:hasAccount')}
@@ -62,6 +74,9 @@ SignUp.propTypes = {
   createPassword: PropTypes.object,
   email: PropTypes.object,
   fullname: PropTypes.object,
+  mock: PropTypes.func,
+  processing: PropTypes.bool,
+  register: PropTypes.func,
   resetTransient: PropTypes.func,
   termsAccepted: PropTypes.bool,
   updatePropsWithValidation: PropTypes.func,
