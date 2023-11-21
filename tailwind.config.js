@@ -14,6 +14,5 @@ export default {
       white: '#FFFFFF',
       error: '#FF0000'
     }
-  },
-  plugins: []
+  }
 };
