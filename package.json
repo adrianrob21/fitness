@@ -1,6 +1,7 @@
 {
   "name": "fitness",
   "version": "0.4.1",
+  "homepage": "public/index.html",
   "description": "A fitness app",
   "main": "index.js",
   "repository": "https://github.com/adrianrob21/web-arch",
