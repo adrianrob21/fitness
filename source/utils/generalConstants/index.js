@@ -55,5 +55,9 @@ export const PATHS = {
   SIGN_UP: '/SignUp',
 
   //PRIVATE
-  DASHBOARD: '/Dashboard'
+  DASHBOARD: '/Dashboard',
+  EXERCISES: '/Exercises',
+  PHOTOS: '/Photos',
+  PLANNING: '/Planning',
+  QUOTES: '/Quotes'
 };

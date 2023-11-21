@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Navigate, Router, Routes } from 'react-router-dom';
 
-// import { Navbar } from "Components"
+import { Navbar } from 'Components';
 
 import routes from './routes';
 import { renderRoute } from './pieces';
@@ -12,7 +12,7 @@ const Navigator = ({ userSession = false }) => {
 
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
+      {userSession && <Navbar />}
 
       <Routes>
         {routes.public.map(
