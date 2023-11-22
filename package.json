@@ -1,6 +1,6 @@
 {
   "name": "fitness",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "homepage": "/",
   "description": "A fitness app",
   "main": "index.js",
@@ -22,7 +22,9 @@
     "firebase": "10.6.0",
     "husky": "8.0.3",
     "i18next": "23.5.1",
+    "moment": "2.29.4",
     "react": "18.2.0",
+    "react-calendar": "4.6.1",
     "react-dom": "18.2.0",
     "react-redux": "8.1.2",
     "react-router-dom": "6.16.0",
