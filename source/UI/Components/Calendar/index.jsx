@@ -4,7 +4,7 @@ import ReactCalendar from 'react-calendar';
 const Calendar = () => (
   <ReactCalendar
     defaultActiveStartDate={new Date()}
-    className={'bg-darkGray text-white mt-0'}
+    className={'bg-darkGray text-white'}
     calendarType={'US'}
     locale={'en-US'}
   />
