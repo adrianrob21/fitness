@@ -4,9 +4,8 @@
   align-items: center;
   justify-content: center;
   min-width: 250px;
-  max-width: 100%;
-  padding: 20px;
-  max-width: 100%;
+  width: 350px;
+  padding: 10px;
   height: 300px;
   border-radius: 24px;
   background: white;
@@ -49,7 +48,7 @@
 
 .react-calendar__navigation {
   display: flex;
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 0.5em;
 }
 
@@ -66,7 +65,7 @@
 
 .react-calendar__month-view__weekdays {
   text-align: center;
-  font-size: 0.65em;
+  font-size: 0.75em;
   font-weight: bold;
 }
 
@@ -80,7 +79,7 @@
   align-items: center;
   justify-content: center;
   font: inherit;
-  font-size: 0.65em;
+  font-size: 0.85em;
   font-weight: bold;
 }
 
@@ -91,7 +90,7 @@
 .react-calendar__year-view .react-calendar__tile,
 .react-calendar__decade-view .react-calendar__tile,
 .react-calendar__century-view .react-calendar__tile {
-  padding: 21em 0.5em;
+  padding: 0rem;
 }
 
 .react-calendar__tile {
@@ -100,7 +99,7 @@
   text-align: center;
   line-height: 16px;
   font: inherit;
-  font-size: 0.65em;
+  font-size: 0.95em;
 }
 
 .react-calendar__tile:disabled {
