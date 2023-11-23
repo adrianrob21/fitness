@@ -1,11 +1,9 @@
-import routes from "Navigator/routes";
+import { connect } from 'react-redux';
 
-import { renderNavLink } from "./pieces";
+import { userSliceActions } from 'Reducers/userSlice';
 
-const Navbar = () => (
-  <div className="flex w-3/12 justify-between">
-    {routes.public.map(renderNavLink)}
-  </div>
-);
+import Navbar from './view';
 
-export default Navbar;
+export default connect(() => ({}), {
+  logout: userSliceActions.logout
+})(Navbar);

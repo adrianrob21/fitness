@@ -1,86 +1,83 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
-const path = require("path");
-const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV == 'production';
 
 const config = {
-  entry: "./public/index.js",
+  entry: './public/index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist')
   },
   devServer: {
     open: true,
-    host: "localhost",
-    historyApiFallback: true,
+    host: 'localhost',
+    historyApiFallback: true
   },
-  plugins: [
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-  ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/i,
-        loader: "babel-loader",
+        loader: 'babel-loader'
       },
       {
         test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        type: 'asset'
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.svg$/,
-        use: ["@svgr/webpack"],
-      },
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
-    ],
+        use: ['@svgr/webpack']
+      }
+    ]
   },
   resolve: {
-    extensions: [".js", ".jsx", ".json"],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       //Source
-      Assets: path.resolve(__dirname, "./source/UI/Assets"),
-      Components: path.resolve(__dirname, "./source/UI/Components"),
-      Navigator: path.resolve(__dirname, "./source/UI/Navigator"),
-      Pages: path.resolve(__dirname, "./source/UI/Pages"),
-      Source: path.resolve(__dirname, "./source"),
+      Assets: path.resolve(__dirname, './source/UI/Assets'),
+      Components: path.resolve(__dirname, './source/UI/Components'),
+      Containers: path.resolve(__dirname, './source/UI/Containers'),
+      Navigator: path.resolve(__dirname, './source/UI/Navigator'),
+      Pages: path.resolve(__dirname, './source/UI/Pages'),
+      Source: path.resolve(__dirname, './source'),
 
       //Process
-      Api: path.resolve(__dirname, "./source/process/api"),
-      Middlewares: path.resolve(__dirname, "./source/process/middlewares"),
-      Reducers: path.resolve(__dirname, "./source/process/reducers"),
-      ReduxStore: path.resolve(__dirname, "./source/process/redux"),
-      Repos: path.resolve(__dirname, "./source/process/repos"),
-      Sagas: path.resolve(__dirname, "./source/process/sagas"),
-      Translations: path.resolve(__dirname, "./source/process/translations"),
+      Api: path.resolve(__dirname, './source/process/api'),
+      Middlewares: path.resolve(__dirname, './source/process/middlewares'),
+      Reducers: path.resolve(__dirname, './source/process/reducers'),
+      ReduxStore: path.resolve(__dirname, './source/process/redux'),
+      Repos: path.resolve(__dirname, './source/process/repos'),
+      Sagas: path.resolve(__dirname, './source/process/sagas'),
+      Translations: path.resolve(__dirname, './source/process/translations'),
 
       //Utils
-      Constants: path.resolve(__dirname, "./source/utils/generalConstants"),
-      Helpers: path.resolve(__dirname, "./source/utils/helpers"),
-    },
+      Constants: path.resolve(__dirname, './source/utils/generalConstants'),
+      Helpers: path.resolve(__dirname, './source/utils/helpers')
+    }
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, "./public/index.html"),
-      filename: "index.html",
-    }),
-  ],
+      template: path.resolve(__dirname, './public/index.html'),
+      filename: 'index.html'
+    })
+  ]
 };
 
 module.exports = () => {
   if (isProduction) {
-    config.mode = "production";
+    config.mode = 'production';
 
     config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+    config.plugins.push(new Dotenv({ ignoreStub: true, path: './.env.production' }));
   } else {
-    config.mode = "development";
+    config.mode = 'development';
+    config.plugins.push(new Dotenv({ ignoreStub: true, path: './.env.development' }));
   }
   return config;
 };

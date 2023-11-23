@@ -1,5 +1,1 @@
-import pokemon from "./pokemon";
-
-export default {
-  pokemon,
-};
+export const USERS = 'users';

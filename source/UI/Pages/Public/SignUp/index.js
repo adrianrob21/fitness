@@ -1,14 +1,17 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { transientSliceActions } from "Reducers/transientSlice";
+import { userSliceActions } from 'Reducers/userSlice';
+import { transientSliceActions } from 'Reducers/transientSlice';
 
-import SignUp from "./view";
+import SignUp from './view';
 
 export default connect(
-  (state) => ({
-    termsAccepted: state.transientSlice?.termsAccepted,
+  state => ({
+    ...state.transientSlice
   }),
   {
-    updateTransientProps: transientSliceActions.updateProps,
+    register: userSliceActions.register,
+    resetTransient: transientSliceActions.reset,
+    updateTransientProps: transientSliceActions.updateProps
   }
 )(SignUp);

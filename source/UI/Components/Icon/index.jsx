@@ -1,31 +1,44 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import {
+  Calendar,
   Check,
+  Dumbell,
   Envelope,
+  Exit,
   Eye,
+  Home,
   IdCard,
+  Media,
+  Quotes,
   SlashedEye,
-  UserIcon,
-} from "Assets/svgs";
+  UserIcon
+} from 'Assets/svgs';
 
 const Icons = {
+  Calendar,
   Check,
+  Dumbell,
   Envelope,
+  Exit,
   Eye,
+  Home,
   IdCard,
+  Media,
+  Quotes,
   SlashedEye,
-  UserIcon,
+  UserIcon
 };
 
-const Icon = ({ iconName = "" }) => {
+const Icon = ({ color = 'fill-white', iconName = '' }) => {
   const CustomIcon = !iconName ? <></> : Icons[iconName];
 
-  return <CustomIcon />;
+  return <CustomIcon className={color} />;
 };
 
 Icon.propTypes = {
-  iconName: PropTypes.string,
+  color: PropTypes.string,
+  iconName: PropTypes.string
 };
 
 export default Icon;
