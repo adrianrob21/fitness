@@ -42,6 +42,7 @@ const config = {
       //Source
       Assets: path.resolve(__dirname, './source/UI/Assets'),
       Components: path.resolve(__dirname, './source/UI/Components'),
+      Containers: path.resolve(__dirname, './source/UI/Containers'),
       Navigator: path.resolve(__dirname, './source/UI/Navigator'),
       Pages: path.resolve(__dirname, './source/UI/Pages'),
       Source: path.resolve(__dirname, './source'),
