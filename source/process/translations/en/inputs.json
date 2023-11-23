@@ -15,6 +15,10 @@
     "label": "Full name",
     "placeholder": "John Doe"
   },
+  "password": {
+    "label": "Password",
+    "placeholder": "PineapplePizzaIsYummy!42"
+  },
   "username": {
     "label": "Username",
     "placeholder": "LlamaDramaMaestro"

@@ -1,7 +1,7 @@
-import Navigator from "Navigator";
+import Navigator from 'Navigator';
 
 const App = () => (
-  <div className={"bg-black w-full min-h-screen"}>
+  <div className={'w-full min-h-screen h-screen'}>
     <Navigator />;
   </div>
 );

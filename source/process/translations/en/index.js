@@ -1,5 +1,7 @@
-import login from "./login.json";
-import inputs from "./inputs.json";
-import signUp from "./signUp.json";
+import login from './login.json';
+import inputs from './inputs.json';
+import signUp from './signUp.json';
+import errors from './errors.json';
+import general from './general.json';
 
-export default { inputs, login, signUp };
+export default { errors, general, inputs, login, signUp };

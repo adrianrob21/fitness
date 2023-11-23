@@ -1,33 +1,47 @@
-import axios from "axios";
+import axios from 'axios';
+import { addDoc, collection } from 'firebase/firestore';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from 'firebase/auth';
+
+import { auth, db } from './firebaseConfig';
 
 const axiosInstance = axios.create({
   timeout: 30000,
-  baseURL: "https://pokeapi.co/api/v2",
+  baseURL: 'https://pokeapi.co/api/v2',
   headers: {
-    "Content-Type": "application/json",
-  },
+    'Content-Type': 'application/json'
+  }
 });
 
 const defaultConfig = {};
 
-const success = (data) => data;
+const success = data => data;
 
-const fail = (error) => Promise.reject(error);
+const fail = error => Promise.reject(error);
 
 axiosInstance.interceptors.response.use(success, fail);
 
 export const Api = {
-  apiType: "API",
+  apiType: 'API',
 
-  configure: (callback) => callback(),
+  configure: callback => callback(),
 
-  get: (url, config = defaultConfig) => axiosInstance.get(url, config),
-  post: (url, body, config = defaultConfig) =>
-    axiosInstance.post(url, body, config),
-  put: (url, body, config = defaultConfig) =>
-    axiosInstance.put(url, body, config),
-  patch: (url, body, config = defaultConfig) =>
-    axiosInstance.patch(url, body, config),
+  register: ({ email, password }) =>
+    createUserWithEmailAndPassword(auth, email, password),
 
-  delete: (url, config = defaultConfig) => axiosInstance.delete(url, config),
+  createDocument: ({ collectionPath, data }) =>
+    addDoc(collection(db, collectionPath), data),
+
+  login: ({ email, password }) => signInWithEmailAndPassword(auth, email, password),
+
+  logout: () => signOut(auth),
+
+  post: (url, body, config = defaultConfig) => axiosInstance.post(url, body, config),
+  put: (url, body, config = defaultConfig) => axiosInstance.put(url, body, config),
+  patch: (url, body, config = defaultConfig) => axiosInstance.patch(url, body, config),
+
+  delete: (url, config = defaultConfig) => axiosInstance.delete(url, config)
 };
