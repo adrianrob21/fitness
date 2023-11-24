@@ -6,6 +6,7 @@ import Media from './media.svg';
 import IdCard from './idCard.svg';
 import Quotes from './quotes.svg';
 import Dumbell from './dumbell.svg';
+import NoPlans from './noPlans.svg';
 import UserIcon from './userIcon.svg';
 import Envelope from './envelope.svg';
 import Calendar from './calendar.svg';
@@ -21,6 +22,7 @@ export {
   Home,
   IdCard,
   Media,
+  NoPlans,
   Quotes,
   SlashedEye,
   UserIcon

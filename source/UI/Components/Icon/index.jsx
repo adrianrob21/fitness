@@ -10,6 +10,7 @@ import {
   Home,
   IdCard,
   Media,
+  NoPlans,
   Quotes,
   SlashedEye,
   UserIcon
@@ -25,6 +26,7 @@ const Icons = {
   Home,
   IdCard,
   Media,
+  NoPlans,
   Quotes,
   SlashedEye,
   UserIcon

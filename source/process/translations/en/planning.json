@@ -1,0 +1,9 @@
+{
+  "addWorkout": "Add workout",
+  "nothingPlanned": "Nothing planned",
+  "tabs": {
+    "newWorkout": "New workout",
+    "plannedWorkout": "Planned workouts"
+  },
+  "title": "Planning"
+}

@@ -12,6 +12,7 @@ const Button = ({
   label = '',
   onClick = mock,
   processing = false,
+  selected = false,
   variant = 'default'
 }) => (
   <div
@@ -19,9 +20,17 @@ const Button = ({
     className={classNames(
       BUTTON_VARIANTS[variant].container,
       fullWidth && 'w-full',
-      disabled ? 'bg-primary-500' : 'bg-primary-900'
+      disabled ? 'bg-primary-500' : 'bg-primary-900',
+      selected ? BUTTON_VARIANTS[variant].selected : ''
     )}>
-    {!processing && <p className={BUTTON_VARIANTS[variant].text}>{label}</p>}
+    {!processing && (
+      <p
+        className={classNames(
+          selected ? BUTTON_VARIANTS[variant].textSelected : BUTTON_VARIANTS[variant].text
+        )}>
+        {label}
+      </p>
+    )}
     {processing && (
       <div>
         <FontAwesomeIcon icon={faDumbbell} spin style={{ color: '#ffffff' }} />
@@ -36,6 +45,7 @@ Button.propTypes = {
   label: PropTypes.string,
   onClick: PropTypes.func,
   processing: PropTypes.bool,
+  selected: PropTypes.bool,
   variant: PropTypes.string
 };
 
