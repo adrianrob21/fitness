@@ -5,9 +5,9 @@ import { mock } from 'Helpers';
 import { renderChip } from './pieces';
 
 const ChipsGroup = ({
+  hasDelete = true,
   keyToUpdate = '',
   labels = [],
-  hasDelete = true,
   selectedValues = [],
   updateProps = mock
 }) => {

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { filterArrayValues, mock } from 'Helpers';
 import I18n from 'Translations';
-import { Dropdown, ChipsGroup } from 'Components';
+import { filterArrayValues, mock } from 'Helpers';
+import { ChipsGroup, Dropdown } from 'Components';
 
 import { DROPDOWN_OPTIONS } from './constants';
 
