@@ -6,7 +6,7 @@ import { Dropdown } from 'Components';
 
 import { DROPDOWN_OPTIONS } from './constants';
 
-const NewWorkoutForm = ({ updatePlanningProps = mock, selectedCategories = [] }) => (
+const NewWorkoutForm = ({ selectedCategories = [], updatePlanningProps = mock }) => (
   <Dropdown
     options={DROPDOWN_OPTIONS}
     updateProps={updatePlanningProps}

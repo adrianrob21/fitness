@@ -1,20 +1,20 @@
 {
   "addWorkout": "Add workout",
+  "muscleGroups": {
+    "abs": "Abs",
+    "arms": "Arms",
+    "back": "Back",
+    "chest": "Chest",
+    "legs": "Legs",
+    "shoulders": "Shoulders"
+  },
+  "newWorkoutForm": {
+    "dropdownTitle": "Choose muscles..."
+  },
   "nothingPlanned": "Nothing planned",
   "tabs": {
     "newWorkout": "New workout",
     "plannedWorkout": "Planned workouts"
   },
-  "title": "Planning",
-  "newWorkoutForm": {
-    "dropdownTitle": "Choose muscles..."
-  },
-  "muscleGroups": {
-    "chest": "Chest",
-    "shoulders": "Shoulders",
-    "abs": "Abs",
-    "legs": "Legs",
-    "arms": "Arms",
-    "back": "Back"
-  }
+  "title": "Planning"
 }

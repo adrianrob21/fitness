@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useComponentVisible = initialIsVisible => {
   const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible);
@@ -27,7 +27,7 @@ const useComponentVisible = initialIsVisible => {
     };
   });
 
-  return { ref, isComponentVisible, setIsComponentVisible };
+  return { isComponentVisible, ref, setIsComponentVisible };
 };
 
 export default useComponentVisible;

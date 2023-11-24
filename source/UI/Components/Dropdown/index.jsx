@@ -17,7 +17,7 @@ const Dropdown = ({
 }) => {
   const lastIndex = options?.length - 1;
 
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+  const { isComponentVisible, ref, setIsComponentVisible } = useComponentVisible(false);
 
   return (
     <div
@@ -46,8 +46,8 @@ const Dropdown = ({
               alreadySelected,
               lastIndex,
               multipleSelect,
-              updateProps,
-              selectedItem
+              selectedItem,
+              updateProps
             })
           )}
       </div>
