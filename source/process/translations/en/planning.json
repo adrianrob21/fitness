@@ -5,5 +5,16 @@
     "newWorkout": "New workout",
     "plannedWorkout": "Planned workouts"
   },
-  "title": "Planning"
+  "title": "Planning",
+  "newWorkoutForm": {
+    "dropdownTitle": "Choose muscles..."
+  },
+  "muscleGroups": {
+    "chest": "Chest",
+    "shoulders": "Shoulders",
+    "abs": "Abs",
+    "legs": "Legs",
+    "arms": "Arms",
+    "back": "Back"
+  }
 }

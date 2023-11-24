@@ -1,5 +1,5 @@
-import { Card, MainLayout, ContentContainer } from 'Containers';
 import { Calendar } from 'Components';
+import { Card, ContentContainer, MainLayout } from 'Containers';
 
 const Dashboard = () => (
   <MainLayout>

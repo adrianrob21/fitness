@@ -58,7 +58,8 @@ const config = {
 
       //Utils
       Constants: path.resolve(__dirname, './source/utils/generalConstants'),
-      Helpers: path.resolve(__dirname, './source/utils/helpers')
+      Helpers: path.resolve(__dirname, './source/utils/helpers'),
+      Hooks: path.resolve(__dirname, './source/utils/hooks')
     }
   },
   plugins: [
