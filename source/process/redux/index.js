@@ -14,7 +14,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import rootSaga from 'Sagas';
 import Middlewares from 'Middlewares';
-import { appSlice, transientSlice, userSlice } from 'Reducers';
+import { appSlice, planningSlice, transientSlice, userSlice } from 'Reducers';
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +23,7 @@ const persistConfig = {
 
 const appReducer = combineReducers({
   appSlice,
+  planningSlice,
   transientSlice,
   userSlice
 });
