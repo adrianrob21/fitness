@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Calendar,
   Check,
+  Chevron,
   Dumbell,
   Envelope,
   Exit,
@@ -19,6 +20,7 @@ import {
 const Icons = {
   Calendar,
   Check,
+  Chevron,
   Dumbell,
   Envelope,
   Exit,

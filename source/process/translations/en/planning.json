@@ -1,5 +1,16 @@
 {
   "addWorkout": "Add workout",
+  "muscleGroups": {
+    "abs": "Abs",
+    "arms": "Arms",
+    "back": "Back",
+    "chest": "Chest",
+    "legs": "Legs",
+    "shoulders": "Shoulders"
+  },
+  "newWorkoutForm": {
+    "dropdownTitle": "Choose muscles..."
+  },
   "nothingPlanned": "Nothing planned",
   "tabs": {
     "newWorkout": "New workout",

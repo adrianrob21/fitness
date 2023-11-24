@@ -1,3 +1,4 @@
 import EmptyState from './EmptyState';
+import NewWorkoutForm from './NewWorkoutForm';
 
-export { EmptyState };
+export { EmptyState, NewWorkoutForm };
