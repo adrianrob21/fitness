@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import I18n from 'Translations';
 import { Tabs } from 'Components';
-import { Card, MainLayout, ContentContainer } from 'Containers';
+import { Card, ContentContainer, MainLayout } from 'Containers';
 
 import { EmptyState } from './subviews';
 

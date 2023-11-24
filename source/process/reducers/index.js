@@ -3,4 +3,4 @@ import userSlice from './userSlice';
 import planningSlice from './planningSlice';
 import transientSlice from './transientSlice';
 
-export { appSlice, transientSlice, planningSlice, userSlice };
+export { appSlice, planningSlice, transientSlice, userSlice };

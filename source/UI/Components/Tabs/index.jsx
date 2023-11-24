@@ -6,7 +6,7 @@ import I18n from 'Translations';
 import Button from '../Button';
 
 const Tabs = ({ selectedTab = '', tabs = [], updateProps = mock }) => (
-  <div className={'flex space-x-10 w-2/3'}>
+  <div className={'flex space-x-10 w-full md:w-2/3'}>
     {tabs.map(({ value }) => (
       <Button
         selected={selectedTab === value}
