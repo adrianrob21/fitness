@@ -6,5 +6,6 @@ import Navbar from './Navbar';
 import Calendar from './Calendar';
 import Checkbox from './Checkbox';
 import Dropdown from './Dropdown';
+import ChipsGroup from './ChipsGroup';
 
-export { Button, Calendar, Checkbox, Dropdown, Icon, Input, Navbar, Tabs };
+export { Button, Calendar, Checkbox, ChipsGroup, Dropdown, Icon, Input, Navbar, Tabs };
