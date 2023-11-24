@@ -57,9 +57,9 @@
     "workbox-webpack-plugin": "7.0.0"
   },
   "scripts": {
-    "build:dev": "webpack --mode=development --node-env=production",
-    "build:prod": "webpack --mode=production",
-    "build": "webpack --mode=production",
+    "build:dev": "webpack --mode=development --node-env=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "build": "webpack --mode=production --node-env=production",
     "test": "yarn test",
     "start": "webpack serve",
     "watch": "webpack --watch",
