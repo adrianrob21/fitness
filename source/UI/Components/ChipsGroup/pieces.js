@@ -9,7 +9,7 @@ export const renderChip = (
   return (
     <div
       className={classNames(
-        'rounded-2xl bg-white  max-h-5 flex items-center space-x-10 text-black p-4',
+        'rounded-2xl bg-white mt-2 ml-1 mr-1 max-h-5 flex items-center space-x-10 text-black p-4',
         'animate-in zoom-in'
       )}>
       <p>{label}</p>

@@ -12,7 +12,7 @@ const ChipsGroup = ({
   updateProps = mock
 }) => {
   return (
-    <div className={'w-full flex flex-wrap space-x-2'}>
+    <div className={'w-full flex flex-wrap'}>
       {labels.map(
         renderChip.bind(null, {
           hasDelete,
