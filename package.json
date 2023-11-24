@@ -1,6 +1,6 @@
 {
   "name": "fitness",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "homepage": "/",
   "description": "A fitness app",
   "main": "index.js",
@@ -30,6 +30,8 @@
     "react-router-dom": "6.16.0",
     "redux-persist": "6.0.0",
     "redux-saga": "1.2.3",
+    "tailwindcss-animate": "1.0.7",
+    "tailwindcss-animated": "1.0.1",
     "webpack": "5.88.2"
   },
   "devDependencies": {
