@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import { INPUT_KEYS } from 'Constants';
 import { classNames, mock } from 'Helpers';
 
+import './styles.css';
 import Icon from './../Icon';
-
-const getValueForOnChange = ({ keyToUpdate, onChange }, e) => {
-  const value = e.target.value;
-  onChange({ [keyToUpdate]: value });
-};
+import { getValueForOnChange } from './bindings';
 
 const Input = ({
+  backgroundColor = 'darkGray',
+  customOnChange = undefined,
   iconName = '',
   keyToUpdate = '',
   label = '',
   notDirty = true,
   onChange = mock,
   placeholder = '',
+  type = '',
   valid = false,
   validationKey = '',
   value = ''
@@ -49,19 +49,23 @@ const Input = ({
       )}
 
       <input
-        onChange={getValueForOnChange.bind(null, { onChange, keyToUpdate })}
-        value={value}
-        type={!showPassword && showPasswordIcon ? 'password' : ''}
-        className={
-          'bg-darkGray rounded-2xl pt-2 pb-2 pl-4 focus:outline-none text-sm w-full text-white'
-        }
+        className={`rounded-2xl pt-2 pb-2 pl-4 focus:outline-none bg-${backgroundColor} text-sm w-full text-white`}
+        onChange={getValueForOnChange.bind(null, {
+          customOnChange,
+          keyToUpdate,
+          onChange
+        })}
         placeholder={placeholder}
+        type={!type ? (!showPassword && showPasswordIcon ? 'password' : '') : type}
+        value={value}
       />
     </div>
   );
 };
 
 Input.propTypes = {
+  backgroundColor: PropTypes.string,
+  customOnChange: PropTypes.func,
   iconName: PropTypes.string,
   key: PropTypes.string,
   keyToUpdate: PropTypes.string,
@@ -69,9 +73,10 @@ Input.propTypes = {
   notDirty: PropTypes.bool,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  type: PropTypes.string,
   valid: PropTypes.bool,
   validationKey: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.any
 };
 
 export default Input;

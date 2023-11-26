@@ -11,9 +11,13 @@ import NoPlans from './noPlans.svg';
 import Calendar from './calendar.svg';
 import Envelope from './envelope.svg';
 import UserIcon from './userIcon.svg';
+import ArrowLeft from './arrowLeft.svg';
+import ArrowRight from './arrowRight.svg';
 import SlashedEye from './slashedEye.svg';
 
 export {
+  ArrowLeft,
+  ArrowRight,
   Calendar,
   Check,
   Chevron,
