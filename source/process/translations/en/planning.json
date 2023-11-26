@@ -9,7 +9,14 @@
     "shoulders": "Shoulders"
   },
   "newWorkoutForm": {
-    "dropdownTitle": "Choose muscles..."
+    "dropdownTitle": "Choose muscles...",
+    "counter": {
+      "pauseLabel": "Pause between",
+      "and": "and",
+      "seriesLabel": "Sets",
+      "placeholder": "Reps",
+      "pauseTime": "Pause time"
+    }
   },
   "nothingPlanned": "Nothing planned",
   "tabs": {

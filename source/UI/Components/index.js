@@ -7,5 +7,17 @@ import Calendar from './Calendar';
 import Checkbox from './Checkbox';
 import Dropdown from './Dropdown';
 import ChipsGroup from './ChipsGroup';
+import StepCounter from './StepCounter';
 
-export { Button, Calendar, Checkbox, ChipsGroup, Dropdown, Icon, Input, Navbar, Tabs };
+export {
+  Button,
+  Calendar,
+  Checkbox,
+  ChipsGroup,
+  Dropdown,
+  Icon,
+  Input,
+  Navbar,
+  StepCounter,
+  Tabs
+};

@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 
 import {
+  ArrowLeft,
+  ArrowRight,
   Calendar,
   Check,
   Chevron,
@@ -18,6 +20,8 @@ import {
 } from 'Assets/svgs';
 
 const Icons = {
+  ArrowLeft,
+  ArrowRight,
   Calendar,
   Check,
   Chevron,
