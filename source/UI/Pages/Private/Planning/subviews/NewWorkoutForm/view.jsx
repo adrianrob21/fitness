@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import I18n from 'Translations';
-import { filterArrayValues, mock, formatDate } from 'Helpers';
-import { ChipsGroup, Dropdown, StepCounter, Calendar } from 'Components';
+import { filterArrayValues, formatDate, mock } from 'Helpers';
+import { Calendar, ChipsGroup, Dropdown, StepCounter } from 'Components';
 
 import { DROPDOWN_OPTIONS } from './constants';
 import { disableDays, onDateChange } from './bindings';
@@ -33,12 +33,12 @@ const NewWorkoutForm = ({
   );
 
   return (
-    <div className={'w-full h-full flex justify-between space-y-4'}>
+    <div className={'w-full flex flex-wrap justify-between space-y-4'}>
       <Calendar
         disableDays={disableDays}
         onChange={onDateChange.bind(null, { updatePlanningProps })}
       />
-      <div className={'flex flex-col space-y-12 h-full'}>
+      <div className={'flex flex-col space-y-12 h-full w-full md:w-1/2'}>
         <p className={'text-white text-2xl'}>
           {formatDate({ date: selectedDate, format: 'descriptive' })}
         </p>
