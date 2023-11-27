@@ -18,7 +18,7 @@ export const renderOptionButton = (
     <p
       onClick={isSelected && !multipleSelect ? mock : updateProps.bind(null, data)}
       className={classNames(
-        'text-white p-4 text-center relative hover:bg-primary-900',
+        'text-white p-4 text-center relative md:hover:bg-primary-900',
         isLast && 'rounded-b-2xl',
         isSelected && 'bg-primary-900',
         !isLast && 'border-b-white border-b-[1px]'

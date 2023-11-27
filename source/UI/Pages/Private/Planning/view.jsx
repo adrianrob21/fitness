@@ -32,10 +32,6 @@ const Planning = ({
           {contentToRender[selectedTab]}
         </Card>
       </ContentContainer>
-      <ContentContainer>
-        <h3 className={'text-xl w-72 text-white'}>Today's inspiration</h3>
-        <Card></Card>
-      </ContentContainer>
     </MainLayout>
   );
 };

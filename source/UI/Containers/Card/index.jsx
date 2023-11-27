@@ -10,7 +10,7 @@ const Card = ({
 }) => (
   <div
     className={classNames(
-      `flex flex-${orientation} w-full h-full flex-1 p-16 ${background} rounded-3xl`,
+      `flex flex-${orientation} w-full h-full overflow-scroll flex-1 p-16 ${background} rounded-3xl`,
       centerAll && 'justify-center items-center'
     )}>
     {children}

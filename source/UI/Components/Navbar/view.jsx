@@ -9,7 +9,7 @@ import { renderNavLink } from './pieces';
 
 const classes = {
   mobileContainer:
-    'flex bg-darkGray items-center fixed bottom-0 w-full p-2 justify-between',
+    'flex z-10 bg-darkGray items-center fixed bottom-0 w-full p-2 justify-between',
   mdContainer: 'md:left-0 md: md:flex-col md:h-full md:w-20',
   mobileIconsContainer: 'flex space-x-6 mr-5 ml-5',
   mdIconsContainer: 'md:flex-col md:space-x-0 md:h-1/3 md:space-y-16'
