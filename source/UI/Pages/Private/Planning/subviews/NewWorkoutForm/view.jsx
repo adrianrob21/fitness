@@ -1,49 +1,73 @@
+import moment from 'moment';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import I18n from 'Translations';
-import { filterArrayValues, mock } from 'Helpers';
-import { ChipsGroup, Dropdown, StepCounter } from 'Components';
+import { filterArrayValues, mock, formatDate } from 'Helpers';
+import { ChipsGroup, Dropdown, StepCounter, Calendar } from 'Components';
 
 import { DROPDOWN_OPTIONS } from './constants';
+import { disableDays, onDateChange } from './bindings';
 
 const NewWorkoutForm = ({
-  selectedCategories = [],
-  series = {},
+  planningState = {},
   transient = {},
   updatePlanningProps = mock,
   updateSeries = mock,
   updateTransientProps = mock
 }) => {
+  const {
+    selectedCategories = [],
+    selectedDate = undefined,
+    series = {}
+  } = planningState;
+
+  useEffect(() => {
+    if (!selectedDate) {
+      updatePlanningProps({ selectedDate: formatDate({ date: moment() }) });
+    }
+  }, []);
+
   const chipsLabels = DROPDOWN_OPTIONS.filter(
     filterArrayValues.bind(null, selectedCategories)
   );
 
   return (
-    <div className={'w-full space-y-4'}>
-      <StepCounter
-        maxCount={5}
-        onCheck={updateTransientProps}
-        series={series}
-        transient={transient}
-        updateProps={updateSeries}
+    <div className={'w-full h-full flex justify-between space-y-4'}>
+      <Calendar
+        disableDays={disableDays}
+        onChange={onDateChange.bind(null, { updatePlanningProps })}
       />
-      <ChipsGroup
-        keyToUpdate={'selectedCategories'}
-        labels={chipsLabels}
-        selectedValues={selectedCategories}
-        updateProps={updatePlanningProps}
-      />
-      <Dropdown
-        alreadySelected={selectedCategories}
-        buttonTitle={I18n.t('planning:newWorkoutForm.dropdownTitle')}
-        options={DROPDOWN_OPTIONS}
-        updateProps={updatePlanningProps}
-      />
+      <div className={'flex flex-col space-y-12 h-full'}>
+        <p className={'text-white text-2xl'}>
+          {formatDate({ date: selectedDate, format: 'descriptive' })}
+        </p>
+        <StepCounter
+          maxCount={5}
+          onCheck={updateTransientProps}
+          series={series}
+          transient={transient}
+          updateProps={updateSeries}
+        />
+        <ChipsGroup
+          keyToUpdate={'selectedCategories'}
+          labels={chipsLabels}
+          selectedValues={selectedCategories}
+          updateProps={updatePlanningProps}
+        />
+        <Dropdown
+          alreadySelected={selectedCategories}
+          buttonTitle={I18n.t('planning:newWorkoutForm.dropdownTitle')}
+          options={DROPDOWN_OPTIONS}
+          updateProps={updatePlanningProps}
+        />
+      </div>
     </div>
   );
 };
 
 NewWorkoutForm.propTypes = {
+  planningState: PropTypes.object,
   selectedCategories: PropTypes.array,
   series: PropTypes.object,
   transient: PropTypes.object,

@@ -7,7 +7,7 @@ import NewWorkoutForm from './view';
 
 export default connect(
   state => ({
-    ...state.planningSlice,
+    planningState: state.planningSlice,
     transient: state.transientSlice
   }),
   {
