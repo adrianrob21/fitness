@@ -10,32 +10,28 @@ const updateProps = (state, action) => {
   return { ...state, ...action.payload };
 };
 
-export const updateSeries = (state, action) => {
-  state.series = {
-    ...state.series,
-    [action.payload.date]: {
-      ...state.series[action.payload.date],
-      ...action.payload.value
-    }
-  };
+export const deleteKey = (state, { payload }) => {
+  if (Object.keys(state).includes(payload)) {
+    delete state[payload];
+  }
 };
 
 export const planningSlice = createSlice({
   name: 'planningSlice',
   initialState,
   reducers: {
+    deleteKey,
     reset,
-    updateProps,
-    updateSeries
+    updateProps
   }
 });
 
 export const planningSliceActions = planningSlice.actions;
 
 export const planningSliceTypes = {
+  deleteKey: planningSlice.actions.deleteKey.type,
   reset: planningSlice.actions.reset.type,
-  updateProps: planningSlice.actions.updateProps.type,
-  updateSeries: planningSlice.actions.updateSeries
+  updateProps: planningSlice.actions.updateProps.type
 };
 
 export default planningSlice.reducer;

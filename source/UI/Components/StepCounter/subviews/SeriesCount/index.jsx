@@ -19,17 +19,12 @@ const SeriesCount = ({
 }) => {
   const showLeft = actualCount > 1;
 
-  const inputValue =
-    series.hasOwnProperty(moment().format('MM/DD/YYYY')) &&
-    series[moment().format('MM/DD/YYYY')].hasOwnProperty(actualCount)
-      ? series[moment().format('MM/DD/YYYY')][actualCount]
-      : 0;
+  const inputValue = series.hasOwnProperty(actualCount) ? series[actualCount] : 0;
 
   const showRight =
-    series.hasOwnProperty(moment().format('MM/DD/YYYY')) &&
-    series[moment().format('MM/DD/YYYY')]?.hasOwnProperty(actualCount) &&
+    series.hasOwnProperty(actualCount) &&
     inputValue > 0 &&
-    actualCount < 5 &&
+    actualCount < maxCount &&
     (pauseValue > 0 || checkBoxActive);
 
   return (
@@ -54,6 +49,7 @@ const SeriesCount = ({
         placeholder={I18n.t('planning:newWorkoutForm.counter.placeholder')}
         backgroundColor={'black'}
         type={'number'}
+        label={'Reps'}
         value={inputValue}
         customOnChange={onChange.bind(null, { updateProps, actualCount })}
       />
