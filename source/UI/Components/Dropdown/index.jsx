@@ -23,7 +23,7 @@ const Dropdown = ({
     <div
       ref={ref}
       className={
-        'bg-black max-h-9 w-full relative flex hover:cursor-pointer items-center rounded-2xl p-5'
+        'bg-black max-h-9 w-full relative flex hover:cursor-pointer items-center rounded-2xl p-5 z-10'
       }
       onClick={setIsComponentVisible.bind(null, !isComponentVisible)}>
       <p className={'text-white text-center w-full'}>{buttonTitle}</p>

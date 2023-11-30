@@ -14,7 +14,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import rootSaga from 'Sagas';
 import Middlewares from 'Middlewares';
-import { appSlice, planningSlice, transientSlice, userSlice } from 'Reducers';
+import {
+  appSlice,
+  exerciseSlice,
+  planningSlice,
+  transientSlice,
+  userSlice,
+  workoutSlice
+} from 'Reducers';
 
 const persistConfig = {
   key: 'root',
@@ -23,7 +30,9 @@ const persistConfig = {
 
 const appReducer = combineReducers({
   appSlice,
+  exerciseSlice,
   planningSlice,
+  workoutSlice,
   transientSlice,
   userSlice
 });

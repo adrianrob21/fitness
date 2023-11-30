@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -34,6 +34,8 @@ export const Api = {
 
   createDocument: ({ collectionPath, data }) =>
     addDoc(collection(db, collectionPath), data),
+
+  getDocuments: ({ collectionPath }) => getDocs(collection(db, collectionPath)),
 
   login: ({ email, password }) => signInWithEmailAndPassword(auth, email, password),
 

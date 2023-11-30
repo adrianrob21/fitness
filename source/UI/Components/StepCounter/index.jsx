@@ -19,11 +19,9 @@ const StepCounter = ({
 
   const checkBoxActive = !!transient[`noPause${actualCount}`];
 
-  const pauseValue =
-    series.hasOwnProperty(moment().format('MM/DD/YYYY')) &&
-    series[moment().format('MM/DD/YYYY')].hasOwnProperty(`pause${actualCount}`)
-      ? series[moment().format('MM/DD/YYYY')][`pause${actualCount}`]
-      : 0;
+  const pauseValue = series.hasOwnProperty(`pause${actualCount}`)
+    ? series[`pause${actualCount}`]
+    : 0;
 
   return (
     <div className={'flex flex-col space-y-4'}>

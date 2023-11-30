@@ -4,21 +4,21 @@ import I18n from 'Translations';
 import { Tabs } from 'Components';
 import { Card, ContentContainer, MainLayout } from 'Containers';
 
-import { EmptyState, NewWorkoutForm } from './subviews';
+import { DayWorkouts, PlannedWorkouts } from './subviews';
 
 const tabs = [{ value: 'planned' }, { value: 'new' }];
 
 const contentToRender = {
-  planned: <EmptyState />,
-  new: <NewWorkoutForm />
+  planned: <PlannedWorkouts />,
+  new: <DayWorkouts />
 };
 
 const Planning = ({
-  plannedTrainings = [],
+  plannedWorkouts = [],
   selectedTab = 'planned',
   updatePlanningProps = mock
 }) => {
-  const noPlannedTrainings = !plannedTrainings.length;
+  const noPlannedTrainings = !plannedWorkouts.length;
 
   return (
     <MainLayout>
@@ -37,7 +37,7 @@ const Planning = ({
 };
 
 Planning.propTypes = {
-  plannedTrainings: PropTypes.array,
+  plannedWorkouts: PropTypes.array,
   selectedTab: PropTypes.string,
   updatePlanningProps: PropTypes.func
 };

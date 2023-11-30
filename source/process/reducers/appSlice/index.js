@@ -17,6 +17,9 @@ export const appSlice = createSlice({
     createDocument: mock,
     createDocumentFail: mock,
     createDocumentSuccess: mock,
+    getDocuments: mock,
+    getDocumentsSuccess: mock,
+    getDocumentsFail: mock,
     reset,
     updateProps
   }
@@ -28,6 +31,9 @@ export const appSliceTypes = {
   createDocument: appSlice.actions.createDocument.type,
   createDocumentFail: appSlice.actions.createDocumentFail.type,
   createDocumentSuccess: appSlice.actions.createDocumentSuccess.type,
+  getDocuments: appSlice.actions.getDocuments.type,
+  getDocumentsFail: appSlice.actions.getDocumentsFail.type,
+  getDocumentsSuccess: appSlice.actions.getDocumentsSuccess.type,
   reset: appSlice.actions.reset.type,
   updateProps: appSlice.actions.updateProps.type
 };

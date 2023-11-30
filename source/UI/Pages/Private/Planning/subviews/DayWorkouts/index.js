@@ -1,16 +1,15 @@
 import { connect } from 'react-redux';
 
-import { appSliceActions } from 'Reducers/appSlice';
 import { planningSliceActions } from 'Reducers/planningSlice';
 
-import Planning from './view';
+import DayWorkouts from './view';
 
 export default connect(
   state => ({
-    ...state.planningSlice
+    planningState: state.planningSlice
   }),
   {
-    getDocuments: appSliceActions.getDocuments,
+    deleteKey: planningSliceActions.deleteKey,
     updatePlanningProps: planningSliceActions.updateProps
   }
-)(Planning);
+)(DayWorkouts);

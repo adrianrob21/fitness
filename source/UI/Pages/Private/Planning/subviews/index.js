@@ -1,4 +1,4 @@
-import EmptyState from './EmptyState';
-import NewWorkoutForm from './NewWorkoutForm';
+import DayWorkouts from './DayWorkouts';
+import PlannedWorkouts from './PlannedWorkouts';
 
-export { EmptyState, NewWorkoutForm };
+export { DayWorkouts, PlannedWorkouts };
