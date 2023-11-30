@@ -4,7 +4,7 @@ import I18n from 'Translations';
 import { Tabs } from 'Components';
 import { Card, ContentContainer, MainLayout } from 'Containers';
 
-import { PlannedWorkouts, DayWorkouts } from './subviews';
+import { DayWorkouts, PlannedWorkouts } from './subviews';
 
 const tabs = [{ value: 'planned' }, { value: 'new' }];
 

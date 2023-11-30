@@ -23,13 +23,13 @@ export const renderExercisesList = ({
       disabled={addWorkoutDisabled}
       label={'Add workout'}
       onClick={onCreateWorkout.bind(null, {
-        updatePlanningProps,
-        resetExercise,
-        resetWorkout,
-        resetTransient,
         createDocument,
-        workoutState,
-        userId
+        resetExercise,
+        resetTransient,
+        resetWorkout,
+        updatePlanningProps,
+        userId,
+        workoutState
       })}
     />
     <div className={'flex space-x-4 flex-wrap'}>{exercises.map(renderExerciseCard)}</div>

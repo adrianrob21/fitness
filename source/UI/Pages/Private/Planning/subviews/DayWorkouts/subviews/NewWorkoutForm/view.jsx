@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import I18n from 'Translations';
 import { filterArrayValues, formatDate, mock } from 'Helpers';
-import { ChipsGroup, Dropdown, StepCounter, Button, Input } from 'Components';
+import { Button, ChipsGroup, Dropdown, Input, StepCounter } from 'Components';
 
 import { DROPDOWN_OPTIONS } from './constants';
 import { renderExercisesList } from './pieces';
-import { onChange, onCancel, onCreateWorkout, onAddExercise } from './bindings';
+import { onAddExercise, onCancel, onChange, onCreateWorkout } from './bindings';
 
 const NewWorkoutForm = ({
   createDocument = mock,

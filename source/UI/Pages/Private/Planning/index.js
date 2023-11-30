@@ -10,7 +10,7 @@ export default connect(
     ...state.planningSlice
   }),
   {
-    updatePlanningProps: planningSliceActions.updateProps,
-    getDocuments: appSliceActions.getDocuments
+    getDocuments: appSliceActions.getDocuments,
+    updatePlanningProps: planningSliceActions.updateProps
   }
 )(Planning);

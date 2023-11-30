@@ -2,13 +2,13 @@ import moment from 'moment';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { mock, formatDate } from 'Helpers';
+import { formatDate, mock } from 'Helpers';
 import { Button, Calendar } from 'Components';
 
 import { NewWorkoutForm } from './subviews';
 import { disableDays, onDateChange } from './bindings';
 
-const DayWorkouts = ({ updatePlanningProps = mock, planningState = {} }) => {
+const DayWorkouts = ({ planningState = {}, updatePlanningProps = mock }) => {
   useEffect(() => {
     if (moment() > moment(selectedDate) || !selectedDate) {
       updatePlanningProps({ selectedDate: formatDate({ date: moment() }) });

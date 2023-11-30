@@ -4,10 +4,10 @@ export const onChange = ({ updateExerciseProps, key }, value) => {
 
 export const onCancel = ({
   deleteKey,
-  selectedDate,
-  updatePlanningProps,
   resetExercise,
-  resetTransient
+  resetTransient,
+  selectedDate,
+  updatePlanningProps
 }) => {
   resetTransient();
   resetExercise();
@@ -16,12 +16,12 @@ export const onCancel = ({
 };
 
 export const onAddExercise = ({
-  updateWorkoutProps,
-  resetExercise,
-  selectedDate,
   exercises,
+  exerciseState,
+  resetExercise,
   resetTransient,
-  exerciseState
+  selectedDate,
+  updateWorkoutProps
 }) => {
   updateWorkoutProps({ date: selectedDate, exercises: [...exercises, exerciseState] });
   resetTransient();
@@ -29,13 +29,13 @@ export const onAddExercise = ({
 };
 
 export const onCreateWorkout = ({
-  updatePlanningProps,
-  resetExercise,
-  resetWorkout,
-  resetTransient,
   createDocument,
-  workoutState,
-  userId
+  resetExercise,
+  resetTransient,
+  resetWorkout,
+  updatePlanningProps,
+  userId,
+  workoutState
 }) => {
   createDocument({ collection: 'workouts', data: { userId, ...workoutState } });
   updatePlanningProps({ showForm: false });
