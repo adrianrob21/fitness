@@ -14,6 +14,7 @@ const Input = ({
   iconName = '',
   keyToUpdate = '',
   label = '',
+  maxLength = undefined,
   notDirty = true,
   onChange = mock,
   placeholder = '',
@@ -55,6 +56,7 @@ const Input = ({
           keyToUpdate,
           onChange
         })}
+        maxLength={maxLength}
         placeholder={placeholder}
         type={!type ? (!showPassword && showPasswordIcon ? 'password' : '') : type}
         value={value}
@@ -70,6 +72,7 @@ Input.propTypes = {
   key: PropTypes.string,
   keyToUpdate: PropTypes.string,
   label: PropTypes.string,
+  maxLength: PropTypes.number,
   notDirty: PropTypes.bool,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,

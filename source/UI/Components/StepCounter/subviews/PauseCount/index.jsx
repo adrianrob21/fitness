@@ -11,7 +11,7 @@ const PauseCount = ({
   label = '',
   maxCount = undefined,
   onCheck = mock,
-  pauseValue = undefined,
+  pauseValue = '',
   updateProps = mock
 }) => {
   if (actualCount === maxCount) return;
@@ -42,8 +42,8 @@ const PauseCount = ({
                 actualCount,
                 isPause: true
               })}
+              maxLength={5}
               placeholder={I18n.t('planning:newWorkoutForm.counter.pauseTime')}
-              type={'number'}
               value={pauseValue}
             />
           </div>
