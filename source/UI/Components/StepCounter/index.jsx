@@ -21,7 +21,9 @@ const StepCounter = ({
 
   const pauseValue = series.hasOwnProperty(`pause${actualCount}`)
     ? series[`pause${actualCount}`]
-    : 0;
+    : '0';
+
+  console.log(pauseValue);
 
   return (
     <div className={'flex flex-col space-y-4'}>
