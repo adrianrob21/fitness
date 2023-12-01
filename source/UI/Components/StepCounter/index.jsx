@@ -23,8 +23,6 @@ const StepCounter = ({
     ? series[`pause${actualCount}`]
     : '0';
 
-  console.log(pauseValue);
-
   return (
     <div className={'flex flex-col space-y-4'}>
       <SeriesCount
