@@ -17,21 +17,36 @@ export const renderExercisesList = ({
   updatePlanningProps,
   userId,
   workoutState
-}) => (
-  <div className={'space-y-10'}>
-    <Button
-      disabled={addWorkoutDisabled}
-      label={'Add workout'}
-      onClick={onCreateWorkout.bind(null, {
-        createDocument,
-        resetExercise,
-        resetTransient,
-        resetWorkout,
-        updatePlanningProps,
-        userId,
-        workoutState
-      })}
-    />
-    <div className={'flex space-x-4 flex-wrap'}>{exercises.map(renderExerciseCard)}</div>
-  </div>
-);
+}) => {
+  const muscles = exercises.length
+    ? Array.from(
+        new Set(
+          exercises
+            .map(exercise => exercise.selectedCategories)
+            .reduce((prev, current) => [...prev, ...current])
+        )
+      )
+    : [];
+
+  return (
+    <div className={'space-y-10'}>
+      <Button
+        disabled={addWorkoutDisabled}
+        label={'Add workout'}
+        onClick={onCreateWorkout.bind(null, {
+          createDocument,
+          muscles,
+          resetExercise,
+          resetTransient,
+          resetWorkout,
+          updatePlanningProps,
+          userId,
+          workoutState
+        })}
+      />
+      <div className={'flex space-x-4 flex-wrap'}>
+        {exercises.map(renderExerciseCard)}
+      </div>
+    </div>
+  );
+};

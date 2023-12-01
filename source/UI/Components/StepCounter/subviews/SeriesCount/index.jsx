@@ -12,7 +12,7 @@ const SeriesCount = ({
   checkBoxActive = false,
   label = '',
   maxCount = undefined,
-  pauseValue = undefined,
+  pauseValue = '0',
   series = {},
   setActualCount = mock,
   updateProps = mock
@@ -25,7 +25,7 @@ const SeriesCount = ({
     series.hasOwnProperty(actualCount) &&
     inputValue > 0 &&
     actualCount < maxCount &&
-    (parseInt(pauseValue.split(':').join('')) > 0 || checkBoxActive);
+    ((pauseValue && parseInt(pauseValue.split(':').join('')) > 0) || checkBoxActive);
 
   return (
     <div className={'space-y-2'}>
