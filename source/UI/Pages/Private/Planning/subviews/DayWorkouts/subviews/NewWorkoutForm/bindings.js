@@ -33,11 +33,12 @@ export const onCreateWorkout = ({
   resetExercise,
   resetTransient,
   resetWorkout,
+  muscles,
   updatePlanningProps,
   userId,
   workoutState
 }) => {
-  createDocument({ collection: 'workouts', data: { userId, ...workoutState } });
+  createDocument({ collection: 'workouts', data: { userId, ...workoutState, muscles } });
   updatePlanningProps({ showForm: false });
   resetExercise();
   resetWorkout();
