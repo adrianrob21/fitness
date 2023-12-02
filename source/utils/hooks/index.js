@@ -1,3 +1,4 @@
+import useTimer from './useTimer';
 import useComponentVisible from './useComponentVisible';
 
-export { useComponentVisible };
+export { useComponentVisible, useTimer };

@@ -12,16 +12,17 @@ import createSagaMiddleware from 'redux-saga';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import rootSaga from 'Sagas';
-import Middlewares from 'Middlewares';
 import {
   appSlice,
   exerciseSlice,
   planningSlice,
+  trainingsSlice,
   transientSlice,
   userSlice,
   workoutSlice
 } from 'Reducers';
+import rootSaga from 'Sagas';
+import Middlewares from 'Middlewares';
 
 const persistConfig = {
   key: 'root',
@@ -32,9 +33,10 @@ const appReducer = combineReducers({
   appSlice,
   exerciseSlice,
   planningSlice,
-  workoutSlice,
+  trainingsSlice,
   transientSlice,
-  userSlice
+  userSlice,
+  workoutSlice
 });
 
 const rootReducer = (state, action) => {

@@ -1,3 +1,4 @@
+import Bed from './bed.svg';
 import Eye from './eye.svg';
 import Exit from './exit.svg';
 import Home from './home.svg';
@@ -18,6 +19,7 @@ import SlashedEye from './slashedEye.svg';
 export {
   ArrowLeft,
   ArrowRight,
+  Bed,
   Calendar,
   Check,
   Chevron,

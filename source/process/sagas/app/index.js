@@ -3,6 +3,7 @@ import { Api } from 'Api';
 
 import { appSliceTypes } from 'Reducers/appSlice';
 import { planningSliceTypes } from 'Reducers/planningSlice';
+import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
 
 export const createDocument = function* ({ payload }) {
   yield put({
