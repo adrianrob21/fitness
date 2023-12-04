@@ -1,3 +1,5 @@
+import { v4 as randomId } from 'uuid';
+
 export const onChange = ({ updateExerciseProps, key }, value) => {
   updateExerciseProps({ [key]: value });
 };
@@ -23,7 +25,10 @@ export const onAddExercise = ({
   selectedDate,
   updateWorkoutProps
 }) => {
-  updateWorkoutProps({ date: selectedDate, exercises: [...exercises, exerciseState] });
+  updateWorkoutProps({
+    date: selectedDate,
+    exercises: [...exercises, { id: randomId(), ...exerciseState }]
+  });
   resetTransient();
   resetExercise();
 };
