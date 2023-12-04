@@ -2,11 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { mock } from 'Helpers';
 
-const initialState = {};
+import { updateProps } from '../shared';
 
-const updateProps = (state, action) => {
-  return { ...state, ...action.payload };
-};
+const initialState = {};
 
 const reset = () => initialState;
 
