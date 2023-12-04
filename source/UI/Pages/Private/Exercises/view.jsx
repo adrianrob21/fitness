@@ -1,23 +1,13 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import I18n from 'Translations';
 import { mock, formatDate } from 'Helpers';
 import { Calendar, Tabs, ChipsGroup } from 'Components';
 import { Card, MainLayout, ContentContainer } from 'Containers';
 
 import { EmptyState } from './subviews';
 import { renderTrainingCard } from './pieces';
-
-const createTabs = ({ length }) =>
-  Array.from(Array(length)).map((_item, index) => ({
-    value: index,
-    label: I18n.t('trainings:trainingNumber', { count: index + 1 })
-  }));
-
-const onDateChange = ({ getDayWorkouts }, date) => {
-  getDayWorkouts({ selectedDate: formatDate({ date }) });
-};
+import { createTabs, onDateChange } from './bindings';
 
 const Exercises = ({
   deleteTrainingsKey = mock,

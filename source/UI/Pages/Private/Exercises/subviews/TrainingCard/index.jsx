@@ -4,30 +4,7 @@ import { mock } from 'Helpers';
 import { useTimer } from 'Hooks';
 import { Button } from 'Components';
 
-const onNext = ({
-  exercise,
-  exerciseCount,
-  exercisePause,
-  updateTrainingsProps,
-  startTimer
-}) => {
-  if (exercisePause || !exercise?.series[`pause${exerciseCount}`]) {
-    updateTrainingsProps({
-      exerciseCount: exerciseCount + 1,
-      exercisePause: false
-    });
-    startTimer(exercise?.series[`pause${exerciseCount}`]);
-  } else if (exercise?.series[`pause${exerciseCount}`]) {
-    updateTrainingsProps({ exercisePause: true });
-    startTimer(exercise?.series[`pause${exerciseCount}`]);
-  }
-};
-
-const onFinish = ({ deleteTrainingsKey, updateExercise, docId, body }) => {
-  deleteTrainingsKey('inProgress');
-  deleteTrainingsKey('exerciseCount');
-  updateExercise({ docId, body });
-};
+import { filterOutId, onFinish, onNext } from './bindings';
 
 const TrainingCard = ({
   exercise = {},
@@ -45,12 +22,7 @@ const TrainingCard = ({
   const { minutes, seconds, startTimer } = useTimer();
 
   const isInProgress = inProgress === id;
-  const filterOutExercise = exercises.filter(item => item.id !== exercise.id);
-
-  const body = {
-    ...workout,
-    exercises: [...filterOutExercise, { ...exercise, finished: true }]
-  };
+  const filterOutExercise = exercises.filter(filterOutId.bind(null, { id: exercise.id }));
 
   return (
     <div
@@ -96,7 +68,9 @@ const TrainingCard = ({
                     deleteTrainingsKey,
                     updateExercise,
                     docId,
-                    body
+                    filterOutExercise,
+                    exercise,
+                    workout
                   })
                 : onNext.bind(null, {
                     exerciseCount,
