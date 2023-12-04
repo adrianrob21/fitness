@@ -2,7 +2,16 @@ import { all, takeLatest } from 'redux-saga/effects';
 
 import { appSliceTypes } from 'Reducers/appSlice';
 import { userSliceTypes } from 'Reducers/userSlice';
+import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
 
+import {
+  getDayWorkouts,
+  getDayWorkoutsFail,
+  getDayWorkoutsSuccess,
+  updateExercise,
+  updateExerciseFail,
+  updateExerciseSuccess
+} from './trainings';
 import {
   register,
   registerSuccess,
@@ -31,6 +40,14 @@ export default function* rootSaga() {
     takeLatest(appSliceTypes.getDocuments, getDocuments),
     takeLatest(appSliceTypes.getDocumentsFail, getDocumentsFail),
     takeLatest(appSliceTypes.getDocumentsSuccess, getDocumentsSuccess),
+
+    //TRAININGS SLICE
+    takeLatest(trainingsSliceTypes.getDayWorkouts, getDayWorkouts),
+    takeLatest(trainingsSliceTypes.getDayWorkoutsFail, getDayWorkoutsFail),
+    takeLatest(trainingsSliceTypes.getDayWorkoutsSuccess, getDayWorkoutsSuccess),
+    takeLatest(trainingsSliceTypes.updateExercise, updateExercise),
+    takeLatest(trainingsSliceTypes.updateExerciseFail, updateExerciseFail),
+    takeLatest(trainingsSliceTypes.updateExerciseSuccess, updateExerciseSuccess),
 
     //USER SLICE
     takeLatest(userSliceTypes.login, login),

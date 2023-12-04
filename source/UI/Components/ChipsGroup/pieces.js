@@ -6,8 +6,6 @@ export const renderChip = (
 ) => {
   const newValues = selectedValues.filter(item => item !== value);
 
-  console.log(label);
-
   return (
     <div
       className={classNames(

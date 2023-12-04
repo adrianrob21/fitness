@@ -6,6 +6,7 @@ import {
   signOut
 } from 'firebase/auth';
 
+import queries from './queries';
 import { auth, db } from './firebaseConfig';
 
 const axiosInstance = axios.create({
@@ -38,6 +39,8 @@ export const Api = {
   getDocuments: ({ collectionPath }) => getDocs(collection(db, collectionPath)),
 
   login: ({ email, password }) => signInWithEmailAndPassword(auth, email, password),
+
+  queries,
 
   logout: () => signOut(auth),
 

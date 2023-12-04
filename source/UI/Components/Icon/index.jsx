@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   ArrowLeft,
   ArrowRight,
+  Bed,
   Calendar,
   Check,
   Chevron,
@@ -22,6 +23,7 @@ import {
 const Icons = {
   ArrowLeft,
   ArrowRight,
+  Bed,
   Calendar,
   Check,
   Chevron,

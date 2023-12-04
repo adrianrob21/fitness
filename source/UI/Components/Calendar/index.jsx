@@ -10,7 +10,7 @@ const Calendar = ({ onChange = mock, disableDays = mock }) => (
   <ReactCalendar
     defaultActiveStartDate={new Date()}
     className={'bg-darkGray text-white w-full lg:w-[350px]'}
-    calendarType={'US'}
+    calendarType={'gregory'}
     tileDisabled={passDate.bind(null, { receiver: disableDays })}
     onChange={passDate.bind(null, { receiver: onChange })}
     locale={'en-US'}
