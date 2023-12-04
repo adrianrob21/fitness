@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { updateProps } from '../shared';
+
 const initialState = {
   exercises: []
 };
 
 const reset = () => initialState;
-
-const updateProps = (state, action) => {
-  return { ...state, ...action.payload };
-};
 
 export const deleteKey = (state, { payload }) => {
   if (Object.keys(state).includes(payload)) {

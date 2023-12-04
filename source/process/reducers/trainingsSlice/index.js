@@ -2,22 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { mock } from 'Helpers';
 
+import { updateProps, deleteKey } from '../shared';
+
 const initialState = {
   series: {},
   selectedTab: 0
 };
 
 const reset = () => initialState;
-
-const updateProps = (state, action) => {
-  return { ...state, ...action.payload };
-};
-
-export const deleteKey = (state, { payload }) => {
-  if (Object.keys(state).includes(payload)) {
-    delete state[payload];
-  }
-};
 
 export const trainingsSlice = createSlice({
   name: 'trainingsSlice',

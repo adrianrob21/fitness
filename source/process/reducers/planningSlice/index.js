@@ -1,20 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { deleteKey, updateProps } from '../shared';
+
 const initialState = {
   series: {}
 };
 
 const reset = () => initialState;
-
-const updateProps = (state, action) => {
-  return { ...state, ...action.payload };
-};
-
-export const deleteKey = (state, { payload }) => {
-  if (Object.keys(state).includes(payload)) {
-    delete state[payload];
-  }
-};
 
 export const planningSlice = createSlice({
   name: 'planningSlice',

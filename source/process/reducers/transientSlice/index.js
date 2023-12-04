@@ -3,11 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { findTrueValues } from 'Helpers';
 import validations from 'Helpers/validations';
 
-const initialState = {};
+import { updateProps } from '../shared';
 
-const updateProps = (state, action) => {
-  return { ...state, ...action.payload };
-};
+const initialState = {};
 
 const reset = () => initialState;
 
