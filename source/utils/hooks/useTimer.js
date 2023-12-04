@@ -1,45 +1,74 @@
 import { useEffect, useState } from 'react';
 
-const useTimer = ({ startTimer = false, time, setStartTimer }) => {
-  if (!time) return { minutes: 0, seconds: 0 };
-  const timeArray = time?.split(':');
+const useTimer = () => {
+  const [timeRemaining, setTimeRemaining] = useState(['00', '00']);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [finished, setFinished] = useState(false);
 
-  let minutes = parseInt(time[0]);
-  let seconds;
-
-  if (timeArray.length > 1) {
-    seconds = parseInt(timeArray[1]);
-  } else {
-    minutes = parseInt(time[0]) - 1;
-    seconds = 59;
-  }
-  const [newMinutes, setNewMinutes] = useState(minutes);
-  const [newSeconds, setNewSeconds] = useState(seconds);
+  const formatTime = inputTime => {
+    if (typeof inputTime === 'number') {
+      const minutes = String(inputTime).padStart(2, '0');
+      return [minutes, '00'];
+    } else if (typeof inputTime === 'string') {
+      const [minutes = '00', seconds = '00'] = inputTime.split(':');
+      return [minutes.padStart(2, '0'), seconds.padStart(2, '0')];
+    }
+    return ['00', '00'];
+  };
 
   useEffect(() => {
     let intervalId;
 
-    if (startTimer && (newMinutes > 0 || newSeconds > 0)) {
+    if (timerRunning && !finished) {
       intervalId = setInterval(() => {
-        if (newSeconds === 0) {
-          if (newMinutes === 0) {
+        setTimeRemaining(prevTime => {
+          const [minutes, seconds] = prevTime;
+
+          if (minutes === '00' && seconds === '00') {
             clearInterval(intervalId);
-          } else {
-            setNewMinutes(prevMinutes => prevMinutes - 1);
-            setNewSeconds(59);
+            setFinished(true);
+            return ['00', '00'];
           }
-        } else {
-          setNewSeconds(prevSeconds => prevSeconds - 1);
-        }
+
+          let newMinutes = parseInt(minutes);
+          let newSeconds = parseInt(seconds);
+
+          if (newSeconds === 0) {
+            newMinutes -= 1;
+            newSeconds = 59;
+          } else {
+            newSeconds -= 1;
+          }
+
+          return [
+            String(newMinutes).padStart(2, '0'),
+            String(newSeconds).padStart(2, '0')
+          ];
+        });
       }, 1000);
-    } else {
-      setStartTimer(false);
     }
 
     return () => clearInterval(intervalId);
-  }, [startTimer, newMinutes, newSeconds]);
+  }, [timerRunning]);
 
-  return { minutes: newMinutes, seconds: newSeconds };
+  const startTimer = initialTime => {
+    if (!timerRunning || finished) {
+      setTimeRemaining(formatTime(initialTime));
+      setTimerRunning(true);
+    }
+    if (timerRunning) {
+      setTimerRunning(false);
+      setFinished(false);
+      setTimeRemaining(formatTime(initialTime));
+    }
+  };
+
+  return {
+    minutes: timeRemaining[0],
+    seconds: timeRemaining[1],
+    startTimer,
+    timerRunning
+  };
 };
 
 export default useTimer;

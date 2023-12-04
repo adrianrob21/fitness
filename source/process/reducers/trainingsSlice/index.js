@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { mock } from 'Helpers';
 
 const initialState = {
-  series: {}
+  series: {},
+  selectedTab: 0
 };
 
 const reset = () => initialState;
@@ -27,6 +28,9 @@ export const trainingsSlice = createSlice({
     getDayWorkoutsFail: mock,
     getDayWorkoutsSuccess: mock,
     reset,
+    updateExercise: mock,
+    updateExerciseFail: mock,
+    updateExerciseSuccess: mock,
     updateProps
   }
 });
@@ -39,6 +43,9 @@ export const trainingsSliceTypes = {
   getDayWorkoutsFail: trainingsSlice.actions.getDayWorkoutsFail.type,
   getDayWorkoutsSuccess: trainingsSlice.actions.getDayWorkoutsSuccess.type,
   reset: trainingsSlice.actions.reset.type,
+  updateExercise: trainingsSlice.actions.updateExercise.type,
+  updateExerciseFail: trainingsSlice.actions.updateExerciseFail.type,
+  updateExerciseSuccess: trainingsSlice.actions.updateExerciseSuccess.type,
   updateProps: trainingsSlice.actions.updateProps.type
 };
 

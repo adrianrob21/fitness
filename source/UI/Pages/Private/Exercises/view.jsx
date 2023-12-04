@@ -15,22 +15,22 @@ const createTabs = ({ length }) =>
     label: I18n.t('trainings:trainingNumber', { count: index + 1 })
   }));
 
-const onDateChange = ({ updateTrainingsProps }, date) => {
-  updateTrainingsProps({ selectedDate: formatDate({ date }) });
+const onDateChange = ({ getDayWorkouts }, date) => {
+  getDayWorkouts({ selectedDate: formatDate({ date }) });
 };
 
 const Exercises = ({
+  deleteTrainingsKey = mock,
   getDayWorkouts = mock,
-  selectedDate = '',
-  selectedTab = 0,
-  updateTrainingsProps = mock,
-  workouts = []
+  trainingsState = {},
+  updateExercise = mock,
+  updateTrainingsProps = mock
 }) => {
   useEffect(() => {
-    if (selectedDate) {
-      getDayWorkouts({ selectedDate });
-    }
-  }, [selectedDate, getDayWorkouts]);
+    getDayWorkouts({ selectedDate: formatDate({ date: new Date() }) });
+  }, []);
+
+  const { selectedTab = 0, workouts = [] } = trainingsState;
 
   return (
     <MainLayout>
@@ -51,18 +51,27 @@ const Exercises = ({
             updateProps={updateTrainingsProps}
           />
         )}
-        <h1 className={'text-white'}>{selectedDate}</h1>
         {!workouts.length ? (
           <EmptyState />
         ) : (
           <div className={'flex space-x-10'}>
-            {workouts[selectedTab].exercises?.map(renderTrainingCard)}
+            {workouts[selectedTab].exercises?.map(
+              renderTrainingCard.bind(null, {
+                deleteTrainingsKey,
+                trainingsState,
+                docId: workouts[selectedTab]?.id,
+                exercises: workouts[selectedTab]?.exercises,
+                workout: workouts[selectedTab],
+                updateExercise,
+                updateTrainingsProps
+              })
+            )}
           </div>
         )}
       </Card>
 
       <ContentContainer>
-        <Calendar onChange={onDateChange.bind(null, { updateTrainingsProps })} />
+        <Calendar onChange={onDateChange.bind(null, { getDayWorkouts })} />
         <h1 className={'text-xl text-white'}>Today's inspiration</h1>
         <Card />
       </ContentContainer>
@@ -71,11 +80,11 @@ const Exercises = ({
 };
 
 Exercises.propTypes = {
+  deleteTrainingsKey: PropTypes.func,
   getDayWorkouts: PropTypes.func,
-  selectedDate: PropTypes.string,
-  selectedTab: PropTypes.string,
-  updateTrainingsProps: PropTypes.func,
-  workouts: PropTypes.array
+  trainingsState: PropTypes.object,
+  updateExercise: PropTypes.func,
+  updateTrainingsProps: PropTypes.func
 };
 
 export default Exercises;

@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, updateDoc } from 'firebase/firestore';
 
 import { db } from './firebaseConfig';
 
@@ -10,4 +10,10 @@ const getDayWorkouts = ({ collectionPath, date }) => {
   return getDocs(q);
 };
 
-export default { getDayWorkouts };
+const updateExercise = ({ collectionPath, docId, body }) => {
+  const docRef = doc(db, collectionPath, docId);
+
+  return updateDoc(docRef, body);
+};
+
+export default { getDayWorkouts, updateExercise };

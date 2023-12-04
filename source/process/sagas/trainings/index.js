@@ -19,7 +19,7 @@ export const getDayWorkouts = function* ({ payload }) {
     },
     promise: Api.queries.getDayWorkouts({
       collectionPath: WORKOUTS,
-      date: payload.selectedDate
+      date: payload?.selectedDate
     })
   });
 };
@@ -35,5 +35,33 @@ export const getDayWorkoutsSuccess = function* ({ payload }) {
 };
 
 export const getDayWorkoutsFail = function* () {
+  yield console.log('Failed');
+};
+
+export const updateExercise = function* ({ payload }) {
+  yield put({
+    type: Api.apiType,
+    actions: {
+      success: { type: trainingsSliceTypes.updateExerciseSuccess },
+      options: {
+        loading: {
+          key: 'processing'
+        }
+      },
+      fail: { type: trainingsSliceTypes.updateExerciseFail }
+    },
+    promise: Api.queries.updateExercise({
+      collectionPath: WORKOUTS,
+      docId: payload.docId,
+      body: payload.body
+    })
+  });
+};
+
+export const updateExerciseSuccess = function* ({ payload }) {
+  yield window.location.reload();
+};
+
+export const updateExerciseFail = function* () {
   yield console.log('Failed');
 };

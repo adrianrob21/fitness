@@ -1,31 +1,56 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { mock } from 'Helpers';
 import { useTimer } from 'Hooks';
 import { Button } from 'Components';
 
-const onNext = ({ count, setCount, series, pause, setPause }) => {
-  if (pause || !series[`pause${count}`]) {
-    setPause(false);
-    setCount(prev => prev + 1);
-  } else if (series[`pause${count}`]) {
-    setPause(true);
+const onNext = ({
+  exercise,
+  exerciseCount,
+  exercisePause,
+  updateTrainingsProps,
+  startTimer
+}) => {
+  if (exercisePause || !exercise?.series[`pause${exerciseCount}`]) {
+    updateTrainingsProps({
+      exerciseCount: exerciseCount + 1,
+      exercisePause: false
+    });
+    startTimer(exercise?.series[`pause${exerciseCount}`]);
+  } else if (exercise?.series[`pause${exerciseCount}`]) {
+    updateTrainingsProps({ exercisePause: true });
+    startTimer(exercise?.series[`pause${exerciseCount}`]);
   }
 };
 
-const TrainingCard = ({ exercise = {} }) => {
-  const [count, setCount] = useState(1);
-  const [pause, setPause] = useState(false);
-  const [startTimer, setStartTimer] = useState(false);
+const onFinish = ({ deleteTrainingsKey, updateExercise, docId, body }) => {
+  deleteTrainingsKey('inProgress');
+  deleteTrainingsKey('exerciseCount');
+  updateExercise({ docId, body });
+};
 
-  const { minutes, seconds } = useTimer({
-    time: exercise?.series[`pause${count}`],
-    startTimer,
-    setStartTimer
-  });
+const TrainingCard = ({
+  exercise = {},
+  trainingsState = {},
+  exercises = [],
+  deleteTrainingsKey = mock,
+  updateExercise = mock,
+  workout = {},
+  docId = '',
+  updateTrainingsProps = mock
+}) => {
+  const { id = '' } = exercise;
+  const { exerciseCount = 1, exercisePause = false, inProgress = '' } = trainingsState;
 
-  console.log(minutes, seconds);
+  const { minutes, seconds, startTimer } = useTimer();
+
+  const isInProgress = inProgress === id;
+  const filterOutExercise = exercises.filter(item => item.id !== exercise.id);
+
+  const body = {
+    ...workout,
+    exercises: [...filterOutExercise, { ...exercise, finished: true }]
+  };
 
   return (
     <div
@@ -34,35 +59,69 @@ const TrainingCard = ({ exercise = {} }) => {
       }>
       <p className={'text-white'}>{exercise.exerciseName}</p>
       <div>
-        {pause ? (
-          <p className={'text-white'}>Pause</p>
+        {exercise.finished ? (
+          <div className={'mb-10'}>
+            <p className={'text-white'}>Finished</p>
+          </div>
+        ) : !!inProgress && inProgress !== id ? (
+          <div>
+            <p className={'text-white mb-2'}>Another exercise is in progress</p>
+          </div>
+        ) : exercisePause ? (
+          <p className={'text-white'}>{`${minutes}:${seconds}`}</p>
         ) : (
           <div className={'space-y-4 mb-4'}>
-            <p className={'text-white'}>{`Reps: ${exercise?.series[count]}`}</p>
-            <p className={'text-white'}>{`Sets: ${count}/${exercise?.numberOfSets}`}</p>
+            <p className={'text-white'}>{`Reps: ${exercise?.series[exerciseCount]}`}</p>
+            <p
+              className={
+                'text-white'
+              }>{`Sets: ${exerciseCount}/${exercise?.numberOfSets}`}</p>
           </div>
         )}
-        <Button
-          label={count === parseInt(exercise.numberOfSets) ? 'Finish' : 'Next'}
-          onClick={
-            count === parseInt(exercise.numberOfSets)
-              ? mock
-              : onNext.bind(null, {
-                  setCount,
-                  setPause,
-                  pause,
-                  count,
-                  series: exercise?.series
-                })
-          }
-        />
+        {!exercise.finished && (
+          <Button
+            label={
+              !isInProgress
+                ? 'Start'
+                : parseInt(exercise.numberOfSets) === exerciseCount
+                ? 'Finish'
+                : 'Next'
+            }
+            disabled={!!inProgress && !isInProgress}
+            onClick={
+              !isInProgress
+                ? updateTrainingsProps.bind(null, { inProgress: id })
+                : parseInt(exercise.numberOfSets) === exerciseCount
+                ? onFinish.bind(null, {
+                    deleteTrainingsKey,
+                    updateExercise,
+                    docId,
+                    body
+                  })
+                : onNext.bind(null, {
+                    exerciseCount,
+                    exercisePause,
+                    exercise,
+                    startTimer,
+                    updateTrainingsProps
+                  })
+            }
+          />
+        )}
       </div>
     </div>
   );
 };
 
 TrainingCard.propTypes = {
-  exercise: PropTypes.object
+  deleteTrainingsKey: PropTypes.func,
+  docId: PropTypes.string,
+  exercise: PropTypes.object,
+  exercises: PropTypes.array,
+  trainingsState: PropTypes.object,
+  updateExercise: PropTypes.func,
+  updateTrainingsProps: PropTypes.func,
+  workout: PropTypes.object
 };
 
 export default TrainingCard;
