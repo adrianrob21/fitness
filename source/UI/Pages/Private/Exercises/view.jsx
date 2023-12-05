@@ -24,42 +24,44 @@ const Exercises = ({
 
   return (
     <MainLayout>
-      <Card centerAll={!workouts.length}>
-        <span className={'mb-10'}>
-          <p className={'text-white text-3xl'}>Muscle groups: </p>
-          <ChipsGroup
-            hasDelete={false}
-            labels={workouts[selectedTab]?.muscles?.map(muscle => ({
-              label: muscle.toUpperCase()
-            }))}
-          />
-        </span>
-        {workouts.length > 1 && (
-          <Tabs
-            tabs={createTabs({ length: workouts?.length })}
-            selectedTab={selectedTab}
-            updateProps={updateTrainingsProps}
-          />
-        )}
-        {!workouts.length ? (
-          <EmptyState />
-        ) : (
-          <div className={'flex space-x-10'}>
-            {workouts[selectedTab].exercises?.map(
-              renderTrainingCard.bind(null, {
-                deleteTrainingsKey,
-                trainingsState,
-                docId: workouts[selectedTab]?.id,
-                exercises: workouts[selectedTab]?.exercises,
-                workout: workouts[selectedTab],
-                updateExercise,
-                updateTrainingsProps
-              })
-            )}
-          </div>
-        )}
-      </Card>
-
+      <div className={'w-full'}>
+        <Card centerAll={!workouts.length}>
+          <span className={'mb-10'}>
+            <p className={'text-white text-3xl'}>Muscle groups: </p>
+            <ChipsGroup
+              hasDelete={false}
+              labels={workouts[selectedTab]?.muscles?.map(muscle => ({
+                label: muscle.toUpperCase()
+              }))}
+            />
+          </span>
+          {workouts.length > 1 && (
+            <Tabs
+              tabs={createTabs({ length: workouts?.length })}
+              selectedTab={selectedTab}
+              updateProps={updateTrainingsProps}
+            />
+          )}
+          {!workouts.length ? (
+            <EmptyState />
+          ) : (
+            <div
+              className={'flex md:space-x-10 justify-center md:justify-start flex-wrap'}>
+              {workouts[selectedTab].exercises?.map(
+                renderTrainingCard.bind(null, {
+                  deleteTrainingsKey,
+                  trainingsState,
+                  docId: workouts[selectedTab]?.id,
+                  exercises: workouts[selectedTab]?.exercises,
+                  workout: workouts[selectedTab],
+                  updateExercise,
+                  updateTrainingsProps
+                })
+              )}
+            </div>
+          )}
+        </Card>
+      </div>
       <ContentContainer>
         <Calendar onChange={onDateChange.bind(null, { getDayWorkouts })} />
         <h1 className={'text-xl text-white'}>Today's inspiration</h1>
