@@ -1,6 +1,6 @@
 {
   "name": "fitness",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "homepage": "/",
   "description": "A fitness app",
   "main": "index.js",
