@@ -15,6 +15,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   appSlice,
   exerciseSlice,
+  growlSlice,
   planningSlice,
   trainingsSlice,
   transientSlice,
@@ -32,6 +33,7 @@ const persistConfig = {
 const appReducer = combineReducers({
   appSlice,
   exerciseSlice,
+  growlSlice,
   planningSlice,
   trainingsSlice,
   transientSlice,

@@ -1,4 +1,5 @@
 {
   "email-already-in-use": "An account is already using this email!",
+  "invalid-login-credentials": "Invalid credentials",
   "somethingWentWrong": "Something went wrong!"
 }

@@ -32,7 +32,7 @@ export const userSliceTypes = {
   loginFail: userSlice.actions.loginFail.type,
   loginSuccess: userSlice.actions.loginSuccess.type,
   logout: userSlice.actions.logout.type,
-  logoutFail: userSlice.actions.loginFail.type,
+  logoutFail: userSlice.actions.logoutFail.type,
   register: userSlice.actions.register.type,
   registerFail: userSlice.actions.registerFail.type,
   registerSuccess: userSlice.actions.registerSuccess.type,
