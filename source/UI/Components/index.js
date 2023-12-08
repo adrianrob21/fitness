@@ -1,5 +1,6 @@
 import Icon from './Icon';
 import Tabs from './Tabs';
+import Growl from './Growl';
 import Input from './Input';
 import Button from './Button';
 import Navbar from './Navbar';
@@ -15,6 +16,7 @@ export {
   Checkbox,
   ChipsGroup,
   Dropdown,
+  Growl,
   Icon,
   Input,
   Navbar,

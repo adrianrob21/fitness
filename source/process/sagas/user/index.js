@@ -5,6 +5,7 @@ import { USERS } from 'Repos';
 import I18n from 'Translations';
 import { appSliceTypes } from 'Reducers/appSlice';
 import { userSliceTypes } from 'Reducers/userSlice';
+import { growlSliceTypes } from 'Reducers/growlSlice';
 import { transientSelector } from 'Reducers/transientSlice';
 
 export const register = function* ({ payload }) {
@@ -54,7 +55,12 @@ export const registerSuccess = function* ({ payload }) {
 export const registerFail = function* ({ payload }) {
   const code = payload?.code?.split('/')[1];
 
-  yield alert(I18n.t(`errors:${code}`));
+  const growl = {
+    growlType: 'error',
+    message: I18n.t(`errors:${code}`)
+  };
+
+  yield put({ type: growlSliceTypes.callGrowl, payload: growl });
 };
 
 export const login = function* ({ payload }) {
@@ -87,7 +93,12 @@ export const loginSuccess = function* ({ payload }) {
 export const loginFail = function* ({ payload }) {
   const code = payload?.code?.split('/')[1];
 
-  yield alert(I18n.t(`errors:${code}`));
+  const growl = {
+    growlType: 'error',
+    message: I18n.t(`errors:${code}`)
+  };
+
+  yield put({ type: growlSliceTypes.callGrowl, payload: growl });
 };
 
 export const logout = function* () {
