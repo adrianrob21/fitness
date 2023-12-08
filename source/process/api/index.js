@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut
 } from 'firebase/auth';
+import axios from 'axios';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 import queries from './queries';
 import { auth, db } from './firebaseConfig';
