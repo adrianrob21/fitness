@@ -8,6 +8,8 @@ const initialState = {};
 
 const reset = () => initialState;
 
+const uploadProfilePictureSuccess = (state, _action) => ({ ...state });
+
 export const userSlice = createSlice({
   name: 'userSlice',
   initialState,
@@ -20,6 +22,10 @@ export const userSlice = createSlice({
     register: mock,
     registerFail: mock,
     registerSuccess: mock,
+    uploadProfilePicture: mock,
+    getProfilePicture: (state, _action) => state,
+    getProfilePictureSuccess: mock,
+    uploadProfilePictureSuccess,
     reset,
     updateProps
   }
@@ -37,7 +43,10 @@ export const userSliceTypes = {
   registerFail: userSlice.actions.registerFail.type,
   registerSuccess: userSlice.actions.registerSuccess.type,
   reset: userSlice.actions.reset.type,
-  updateProps: userSlice.actions.updateProps.type
+  updateProps: userSlice.actions.updateProps.type,
+  uploadProfilePicture: userSlice.actions.uploadProfilePicture.type,
+  getProfilePictureSuccess: userSlice.actions.getProfilePicture.type,
+  getProfilePicture: userSlice.actions.getProfilePicture.type
 };
 
 export const userSelector = state => state.userSlice;

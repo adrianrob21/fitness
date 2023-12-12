@@ -7,8 +7,8 @@ import axios from 'axios';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 import queries from './queries';
-import { auth, db } from './firebaseConfig';
 import { getUserId } from './queries';
+import { auth, db } from './firebaseConfig';
 
 const axiosInstance = axios.create({
   timeout: 30000,
@@ -17,8 +17,6 @@ const axiosInstance = axios.create({
     'Content-Type': 'application/json'
   }
 });
-
-const defaultConfig = {};
 
 const success = data => data;
 

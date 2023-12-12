@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
@@ -15,12 +16,26 @@ const classes = {
   mdIconsContainer: 'md:flex-col md:space-x-0 md:h-1/3 md:space-y-16'
 };
 
-const Navbar = ({ logout = mock }) => {
+const Navbar = ({
+  logout = mock,
+  getProfilePicture = mock,
+  userId = '',
+  profilePicture = ''
+}) => {
   const location = useLocation();
+
+  console.log('profilePicture', profilePicture);
+
+  useEffect(() => {
+    if (userId) getProfilePicture(userId);
+  }, [getProfilePicture]);
 
   return (
     <div className={`${classes.mobileContainer} ${classes.mdContainer}`}>
-      <div className={'h-8 w-8 bg-white rounded-full p-5'} />
+      <img
+        className={'h-14 w-14 rounded-full object-cover md:mt-10'}
+        src={profilePicture}
+      />
 
       <div className={`${classes.mobileIconsContainer} ${classes.mdIconsContainer}`}>
         {routes.private.map(
@@ -36,7 +51,10 @@ const Navbar = ({ logout = mock }) => {
 };
 
 Navbar.propTypes = {
-  logout: PropTypes.func
+  getProfilePicture: PropTypes.func,
+  logout: PropTypes.func,
+  profilePicture: PropTypes.string,
+  userId: PropTypes.string
 };
 
 export default Navbar;

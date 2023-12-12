@@ -1,9 +1,12 @@
-import { collection, getDocs, query, where, doc, updateDoc } from 'firebase/firestore';
 import { store } from 'ReduxStore';
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { collection, getDocs, query, where, doc, updateDoc } from 'firebase/firestore';
 
-import { db } from './firebaseConfig';
+import { userSliceActions } from 'Reducers/userSlice';
 
-export const getUserId = () => store?.getState()?.userSlice.userId;
+import { db, storage } from './firebaseConfig';
+
+export const getUserId = () => store?.getState()?.userSlice?.userId;
 
 const getDayWorkouts = ({ collectionPath, date }) => {
   const collectionRef = collection(db, collectionPath);
@@ -23,4 +26,24 @@ const updateExercise = ({ collectionPath, docId, body }) => {
   return updateDoc(docRef, body);
 };
 
-export default { getDayWorkouts, updateExercise };
+const uploadFile = ({ folderName, image, userId }) => {
+  console.log(image);
+  const imageRef = ref(storage, `${folderName}/${userId}/profileImage.png`);
+  const formatedImage = image.replace(/^data:image\/(jpeg|png|gif|bmp);base64,/, '');
+
+  return uploadString(imageRef, formatedImage, 'base64');
+};
+
+const getProfilePicture = userId => {
+  const profilePictureRef = ref(storage, `profileImages/${userId}/profileImage.png`);
+
+  getDownloadURL(profilePictureRef)
+    .then(profile => {
+      store.dispatch(userSliceActions.updateProps({ profilePicture: profile }));
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export default { getDayWorkouts, getProfilePicture, updateExercise, uploadFile };

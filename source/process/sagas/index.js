@@ -13,14 +13,16 @@ import {
   updateExerciseSuccess
 } from './trainings';
 import {
-  register,
-  registerSuccess,
-  registerFail,
+  getProfilePicture,
   login,
-  loginSuccess,
   loginFail,
+  loginSuccess,
   logout,
-  logoutFail
+  logoutFail,
+  register,
+  registerFail,
+  registerSuccess,
+  uploadProfilePicture
 } from './user';
 import {
   createDocument,
@@ -57,6 +59,8 @@ export default function* rootSaga() {
     takeLatest(userSliceTypes.logoutFail, logoutFail),
     takeLatest(userSliceTypes.register, register),
     takeLatest(userSliceTypes.registerFail, registerFail),
-    takeLatest(userSliceTypes.registerSuccess, registerSuccess)
+    takeLatest(userSliceTypes.registerSuccess, registerSuccess),
+    takeLatest(userSliceTypes.uploadProfilePicture, uploadProfilePicture),
+    takeLatest(userSliceTypes.getProfilePicture, getProfilePicture)
   ]);
 }

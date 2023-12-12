@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Calendar from './Calendar';
 import Checkbox from './Checkbox';
 import Dropdown from './Dropdown';
+import PhotoInput from './PhotoInput';
 import ChipsGroup from './ChipsGroup';
 import StepCounter from './StepCounter';
 
@@ -20,6 +21,7 @@ export {
   Icon,
   Input,
   Navbar,
+  PhotoInput,
   StepCounter,
   Tabs
 };

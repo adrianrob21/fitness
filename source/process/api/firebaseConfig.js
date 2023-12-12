@@ -1,6 +1,7 @@
 import process from 'process';
 import { getAuth } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
 import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore';
 
@@ -17,4 +18,5 @@ export const config = {
 export const app = initializeApp(config);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+export const storage = getStorage(app);
 export const db = getFirestore(app);
