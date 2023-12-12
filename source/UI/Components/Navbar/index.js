@@ -11,7 +11,7 @@ export default connect(
     userSession: state.userSlice?.userSession
   }),
   {
-    logout: userSliceActions.logout,
-    getProfilePicture: userSliceActions.getProfilePicture
+    getProfilePicture: userSliceActions.getProfilePicture,
+    logout: userSliceActions.logout
   }
 )(Navbar);

@@ -17,10 +17,10 @@ const classes = {
 };
 
 const Navbar = ({
-  logout = mock,
   getProfilePicture = mock,
-  userId = '',
-  profilePicture = ''
+  logout = mock,
+  profilePicture = '',
+  userId = ''
 }) => {
   const location = useLocation();
 

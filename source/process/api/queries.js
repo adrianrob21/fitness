@@ -1,6 +1,6 @@
 import { store } from 'ReduxStore';
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-import { collection, getDocs, query, where, doc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 
 import { userSliceActions } from 'Reducers/userSlice';
 

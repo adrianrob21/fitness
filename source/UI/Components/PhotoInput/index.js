@@ -9,7 +9,6 @@ const shapes = {
 };
 
 const handleOnChange = (onChange, e) => {
-  console.log(onChange);
   const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();

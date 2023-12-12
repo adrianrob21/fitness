@@ -52,6 +52,7 @@ export default function* rootSaga() {
     takeLatest(trainingsSliceTypes.updateExerciseSuccess, updateExerciseSuccess),
 
     //USER SLICE
+    takeLatest(userSliceTypes.getProfilePicture, getProfilePicture),
     takeLatest(userSliceTypes.login, login),
     takeLatest(userSliceTypes.loginFail, loginFail),
     takeLatest(userSliceTypes.loginSuccess, loginSuccess),
@@ -60,7 +61,6 @@ export default function* rootSaga() {
     takeLatest(userSliceTypes.register, register),
     takeLatest(userSliceTypes.registerFail, registerFail),
     takeLatest(userSliceTypes.registerSuccess, registerSuccess),
-    takeLatest(userSliceTypes.uploadProfilePicture, uploadProfilePicture),
-    takeLatest(userSliceTypes.getProfilePicture, getProfilePicture)
+    takeLatest(userSliceTypes.uploadProfilePicture, uploadProfilePicture)
   ]);
 }
