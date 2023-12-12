@@ -1,4 +1,4 @@
-import { put, select } from 'redux-saga/effects';
+import { put, select, call } from 'redux-saga/effects';
 
 import { Api } from 'Api';
 import { USERS } from 'Repos';
@@ -42,6 +42,13 @@ export const registerSuccess = function* ({ payload }) {
     }
   });
 
+  if (transient?.profileImage) {
+    yield put({
+      type: userSliceTypes.uploadProfilePicture,
+      payload: { userId: payload.user.uid }
+    });
+  }
+
   yield put({
     type: userSliceTypes.updateProps,
     payload: {
@@ -61,6 +68,24 @@ export const registerFail = function* ({ payload }) {
   };
 
   yield put({ type: growlSliceTypes.callGrowl, payload: growl });
+};
+
+export const uploadProfilePicture = function* ({ payload }) {
+  const transient = yield select(transientSelector);
+  const image = transient?.profileImage;
+
+  yield put({
+    type: Api.apiType,
+    actions: {
+      success: { type: userSliceTypes.uploadProfilePictureSuccess },
+      fail: { type: userSliceTypes.registerFail }
+    },
+    promise: Api.queries.uploadFile({
+      folderName: 'profileImages',
+      image,
+      userId: payload.userId
+    })
+  });
 };
 
 export const login = function* ({ payload }) {
@@ -88,6 +113,10 @@ export const loginSuccess = function* ({ payload }) {
       userSession: true
     }
   });
+};
+
+export const getProfilePicture = function* ({ payload }) {
+  yield call(Api.queries.getProfilePicture, payload);
 };
 
 export const loginFail = function* ({ payload }) {

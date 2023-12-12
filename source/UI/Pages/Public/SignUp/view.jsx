@@ -37,6 +37,7 @@ const SignUp = ({
       }
       inputsValues={{ confirmPassword, createPassword, email, fullname, username }}
       inputs={SIGNUP_INPUTS}
+      hasPhotoInput={true}
       ExtraContent={
         <Checkbox
           active={termsAccepted}
