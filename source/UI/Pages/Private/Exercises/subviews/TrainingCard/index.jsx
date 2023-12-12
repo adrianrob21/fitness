@@ -1,3 +1,4 @@
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import { mock } from 'Helpers';
@@ -21,6 +22,8 @@ const TrainingCard = ({
 
   const { minutes, seconds, startTimer } = useTimer();
 
+  const isPast = moment(workout.date) < moment();
+
   const isInProgress = inProgress === id;
   const filterOutExercise = exercises.filter(filterOutId.bind(null, { id: exercise.id }));
 
@@ -31,7 +34,11 @@ const TrainingCard = ({
       }>
       <p className={'text-white'}>{exercise.exerciseName}</p>
       <div>
-        {exercise.finished ? (
+        {isPast ? (
+          <div className={'mb-10'}>
+            <p className={'text-white'}>This is a past exercise </p>
+          </div>
+        ) : exercise.finished ? (
           <div className={'mb-10'}>
             <p className={'text-white'}>Finished</p>
           </div>
