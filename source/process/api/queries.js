@@ -1,7 +1,8 @@
 import { store } from 'ReduxStore';
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 
+import { base64toBlob } from 'Helpers';
 import { userSliceActions } from 'Reducers/userSlice';
 
 import { db, storage } from './firebaseConfig';
@@ -27,11 +28,18 @@ const updateExercise = ({ collectionPath, docId, body }) => {
 };
 
 const uploadFile = ({ folderName, image, userId }) => {
-  console.log(image);
   const imageRef = ref(storage, `${folderName}/${userId}/profileImage.png`);
   const formatedImage = image.replace(/^data:image\/(jpeg|png|gif|bmp);base64,/, '');
 
-  return uploadString(imageRef, formatedImage, 'base64');
+  const blob = base64toBlob(formatedImage);
+
+  const uploadTask = uploadBytesResumable(imageRef, blob);
+
+  uploadTask.on('state_changed', null, null, () => {
+    store.dispatch(userSliceActions.updateProps({ userSession: true }));
+
+    return;
+  });
 };
 
 const getProfilePicture = userId => {

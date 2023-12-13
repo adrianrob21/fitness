@@ -41,7 +41,6 @@ export const registerSuccess = function* ({ payload }) {
       data
     }
   });
-
   if (transient?.profileImage) {
     yield put({
       type: userSliceTypes.uploadProfilePicture,
@@ -54,7 +53,7 @@ export const registerSuccess = function* ({ payload }) {
     payload: {
       email: payload.user.email,
       userId: payload.user.uid,
-      userSession: true
+      ...(!transient?.profileImage && { userSession: true })
     }
   });
 };

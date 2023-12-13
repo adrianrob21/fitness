@@ -24,8 +24,6 @@ const Navbar = ({
 }) => {
   const location = useLocation();
 
-  console.log('profilePicture', profilePicture);
-
   useEffect(() => {
     if (userId) getProfilePicture(userId);
   }, [getProfilePicture]);
