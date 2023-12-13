@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { _UploadTask } from 'firebase/storage';
 
 import I18n from 'Translations';
 import { PATHS } from 'Constants';
