@@ -2,6 +2,7 @@ import { store } from 'ReduxStore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 
+import { base64toBlob } from 'Helpers';
 import { userSliceActions } from 'Reducers/userSlice';
 
 import { db, storage } from './firebaseConfig';
@@ -25,18 +26,6 @@ const updateExercise = ({ collectionPath, docId, body }) => {
 
   return updateDoc(docRef, body);
 };
-
-function base64toBlob(base64String, contentType = 'image/png') {
-  const byteCharacters = atob(base64String);
-  const byteNumbers = new Array(byteCharacters.length);
-
-  for (let i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
-  }
-
-  const byteArray = new Uint8Array(byteNumbers);
-  return new Blob([byteArray], { type: contentType });
-}
 
 const uploadFile = ({ folderName, image, userId }) => {
   const imageRef = ref(storage, `${folderName}/${userId}/profileImage.png`);
