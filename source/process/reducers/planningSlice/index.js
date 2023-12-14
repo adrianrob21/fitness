@@ -21,9 +21,9 @@ export const planningSlice = createSlice({
 export const planningSliceActions = planningSlice.actions;
 
 export const planningSliceTypes = {
-  deleteKey: planningSlice.actions.deleteKey.type,
-  reset: planningSlice.actions.reset.type,
-  updateProps: planningSlice.actions.updateProps.type
+  deleteKey: planningSlice?.actions.deleteKey.type,
+  reset: planningSlice?.actions.reset.type,
+  updateProps: planningSlice?.actions.updateProps.type
 };
 
 export default planningSlice.reducer;

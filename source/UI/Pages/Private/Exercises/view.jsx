@@ -47,7 +47,7 @@ const Exercises = ({
           ) : (
             <div
               className={'flex md:space-x-10 justify-center md:justify-start flex-wrap'}>
-              {workouts[selectedTab].exercises?.map(
+              {workouts[selectedTab]?.exercises?.map(
                 renderTrainingCard.bind(null, {
                   deleteTrainingsKey,
                   trainingsState,

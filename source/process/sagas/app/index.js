@@ -1,16 +1,22 @@
 import { put } from 'redux-saga/effects';
-import { Api } from 'Api';
 
+import { Api } from 'Api';
+import I18n from 'Translations';
 import { appSliceTypes } from 'Reducers/appSlice';
-import { planningSliceTypes } from 'Reducers/planningSlice';
-import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
+import { growlSliceTypes } from 'Reducers/growlSlice';
+import { transientSliceTypes } from 'Reducers/transientSlice';
+
+import { updateStateKey } from 'Helpers';
 
 export const createDocument = function* ({ payload }) {
   yield put({
     type: Api.apiType,
     actions: {
-      success: { type: appSliceTypes.createDocumentSuccess },
-      fail: { type: appSliceTypes.createDocumentFail }
+      success: {
+        type: appSliceTypes.requestSuccess,
+        message: payload.successMessage
+      },
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.createDocument({
       collectionPath: payload.collection,
@@ -19,12 +25,27 @@ export const createDocument = function* ({ payload }) {
   });
 };
 
-export const createDocumentFail = function* () {
-  yield alert('User not created...');
+export const requestFail = function* ({ processingKey, payload }) {
+  const code = payload?.code?.split('/')[1] || '';
+
+  const growl = {
+    growlType: 'error',
+    message: I18n.t([`errors:${code}`, 'errors:somethingWentWrong'])
+  };
+
+  yield put({ type: growlSliceTypes.callGrowl, payload: growl });
+  if (processingKey) {
+    yield put({ type: transientSliceTypes.deleteKey, key: processingKey });
+  }
 };
 
-export const createDocumentSuccess = function* () {
-  yield alert('User created!');
+export const requestSuccess = function* ({ message = '' }) {
+  const growl = {
+    growlType: 'success',
+    message
+  };
+
+  yield put({ type: growlSliceTypes.callGrowl, payload: growl });
 };
 
 export const getDocuments = function* ({ payload }) {
@@ -33,9 +54,10 @@ export const getDocuments = function* ({ payload }) {
     actions: {
       success: {
         type: appSliceTypes.getDocumentsSuccess,
-        path: payload.collectionPath
+        path: payload.collectionPath,
+        keyToUpdate: payload.keyToUpdate
       },
-      fail: { type: appSliceTypes.getDocumentsFail }
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.getDocuments({
       collectionPath: payload.collectionPath
@@ -43,24 +65,12 @@ export const getDocuments = function* ({ payload }) {
   });
 };
 
-const updateKey = (repo, keyToUpdate, data) => {
-  const keys = {
-    workouts: { type: planningSliceTypes.updateProps, payload: { [keyToUpdate]: data } }
-  };
-
-  return keys[repo];
-};
-
-export const getDocumentsSuccess = function* ({ payload, path }) {
+export const getDocumentsSuccess = function* ({ payload, path, keyToUpdate }) {
   const data = [];
 
   payload?.forEach(doc => {
-    data.push(doc.data());
+    data.push({ id: doc.id, ...doc.data() });
   });
 
-  yield put(updateKey(path, 'plannedWorkouts', data));
-};
-
-export const getDocumentsFail = function* () {
-  yield alert('There was an error');
+  yield put(updateStateKey(path, keyToUpdate, data));
 };

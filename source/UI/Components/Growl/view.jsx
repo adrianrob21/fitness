@@ -10,8 +10,10 @@ const Growl = ({
   growlActive = false,
   message = '',
   updateGrowlProps = mock,
-  growlType = 'error'
+  growlType
 }) => {
+  console.log(growlType);
+
   useEffect(() => {
     if (growlActive) {
       const timeoutId = setTimeout(() => {

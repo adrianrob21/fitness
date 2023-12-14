@@ -4,15 +4,15 @@ import { deleteKey, updateProps } from '../shared';
 
 const initialState = {
   growlActive: false,
-  message: '',
-  growlType: 'error'
+  growlType: 'error',
+  message: ''
 };
 
 const reset = () => initialState;
 
 export const callGrowl = (state, { payload }) => {
   state.message = payload.message;
-  state.growlType = payload.type;
+  state.growlType = payload.growlType;
   state.growlActive = true;
 };
 

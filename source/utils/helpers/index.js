@@ -1,5 +1,8 @@
 import moment from 'moment';
 
+import { planningSliceTypes } from 'Reducers/planningSlice';
+import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
+
 export const classNames = (...classes) => classes.filter(Boolean).join(' ');
 
 export const findTrueValues = value => value === true;
@@ -29,4 +32,16 @@ export const base64toBlob = (base64String, contentType = 'image/png') => {
 
   const byteArray = new Uint8Array(byteNumbers);
   return new Blob([byteArray], { type: contentType });
+};
+
+export const updateStateKey = (sliceOrRepo, keyToUpdate, data) => {
+  const keys = {
+    workouts: { type: planningSliceTypes?.updateProps, payload: { [keyToUpdate]: data } },
+    dayWorkouts: {
+      type: trainingsSliceTypes?.updateProps,
+      payload: { [keyToUpdate]: data }
+    }
+  };
+
+  return keys[sliceOrRepo];
 };

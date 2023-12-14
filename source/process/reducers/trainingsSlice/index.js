@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { mock } from 'Helpers';
-
-import { updateProps, deleteKey } from '../shared';
+import { updateProps, deleteKey, reduxMock } from '../shared';
 
 const initialState = {
   series: {},
@@ -16,13 +14,9 @@ export const trainingsSlice = createSlice({
   initialState,
   reducers: {
     deleteKey,
-    getDayWorkouts: mock,
-    getDayWorkoutsFail: mock,
-    getDayWorkoutsSuccess: mock,
+    getDayWorkouts: reduxMock,
     reset,
-    updateExercise: mock,
-    updateExerciseFail: mock,
-    updateExerciseSuccess: mock,
+    updateExercise: reduxMock,
     updateProps
   }
 });
@@ -32,12 +26,8 @@ export const trainingsSliceActions = trainingsSlice.actions;
 export const trainingsSliceTypes = {
   deleteKey: trainingsSlice.actions.deleteKey.type,
   getDayWorkouts: trainingsSlice.actions.getDayWorkouts.type,
-  getDayWorkoutsFail: trainingsSlice.actions.getDayWorkoutsFail.type,
-  getDayWorkoutsSuccess: trainingsSlice.actions.getDayWorkoutsSuccess.type,
   reset: trainingsSlice.actions.reset.type,
   updateExercise: trainingsSlice.actions.updateExercise.type,
-  updateExerciseFail: trainingsSlice.actions.updateExerciseFail.type,
-  updateExerciseSuccess: trainingsSlice.actions.updateExerciseSuccess.type,
   updateProps: trainingsSlice.actions.updateProps.type
 };
 
