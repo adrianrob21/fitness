@@ -1,4 +1,5 @@
 import { classNames } from 'Helpers';
+import { v4 as randomKey } from 'uuid';
 
 export const renderChip = (
   { hasDelete, keyToUpdate, selectedValues, updateProps },
@@ -8,6 +9,7 @@ export const renderChip = (
 
   return (
     <div
+      key={randomKey()}
       className={classNames(
         'rounded-2xl bg-white mt-2 ml-1 mr-1 max-h-5 flex items-center space-x-10 text-black pt-4 pl-2 pr-1 pb-4',
         'animate-in zoom-in'

@@ -16,7 +16,7 @@ const Tabs = ({
 );
 
 Tabs.propTypes = {
-  selectedTab: PropTypes.string,
+  selectedTab: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   tabs: PropTypes.array,
   updateProps: PropTypes.func,
   useValueAsLabel: PropTypes.bool

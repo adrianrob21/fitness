@@ -5,88 +5,79 @@ import { mock } from 'Helpers';
 import { useTimer } from 'Hooks';
 import { Button } from 'Components';
 
-import { filterOutId, onFinish, onNext } from './bindings';
+import { filterOutId, getButtonProps, generateView } from './bindings';
+
+import consoleState from './bindings';
 
 const TrainingCard = ({
-  exercise = {},
-  trainingsState = {},
-  exercises = [],
   deleteTrainingsKey = mock,
-  updateExercise = mock,
-  workout = {},
   docId = '',
-  updateTrainingsProps = mock
+  exercise = {},
+  exercises = [],
+  trainingsState = {},
+  updateExercise = mock,
+  updateTrainingsProps = mock,
+  workout = {}
 }) => {
   const { id = '' } = exercise;
   const { exerciseCount = 1, exercisePause = false, inProgress = '' } = trainingsState;
 
   const { minutes, seconds, startTimer } = useTimer();
 
-  const isPast = moment(workout.date) < moment();
+  const isPast = moment(workout.date).isBefore(moment(), 'day');
 
   const isInProgress = inProgress === id;
   const filterOutExercise = exercises.filter(filterOutId.bind(null, { id: exercise.id }));
 
+  const buttonArgs = {
+    deleteTrainingsKey,
+    docId,
+    exercise,
+    exercise,
+    exerciseCount,
+    exercisePause,
+    filterOutExercise,
+    id,
+    startTimer,
+    updateExercise,
+    updateTrainingsProps,
+    workout
+  };
+
+  const buttonProps = getButtonProps(
+    !isInProgress,
+    parseInt(exercise.numberOfSets) === exerciseCount,
+    buttonArgs,
+    updateTrainingsProps
+  );
+
+  const viewConditionals = {
+    anotherInProgress: !!inProgress && inProgress !== id,
+    exercisePause,
+    isFinished: exercise.finished,
+    isPast
+  };
+
+  const viewArgs = {
+    exercise,
+    exerciseCount,
+    minutes,
+    seconds
+  };
+
   return (
     <div
       className={
-        'flex flex-col mt-10 justify-center bg-black w-48 items-center rounded-3xl p-5 space-y-10'
+        'flex flex-col mt-10 justify-center bg-black w-48 items-center rounded-3xl p-5 space-y-5'
       }>
       <p className={'text-white'}>{exercise.exerciseName}</p>
       <div>
-        {isPast ? (
-          <div className={'mb-10'}>
-            <p className={'text-white'}>This is a past exercise </p>
-          </div>
-        ) : exercise.finished ? (
-          <div className={'mb-10'}>
-            <p className={'text-white'}>Finished</p>
-          </div>
-        ) : !!inProgress && inProgress !== id ? (
-          <div>
-            <p className={'text-white mb-2'}>Another exercise is in progress</p>
-          </div>
-        ) : exercisePause ? (
-          <p className={'text-white'}>{`${minutes}:${seconds}`}</p>
-        ) : (
-          <div className={'space-y-4 mb-4'}>
-            <p className={'text-white'}>{`Reps: ${exercise?.series[exerciseCount]}`}</p>
-            <p
-              className={
-                'text-white'
-              }>{`Sets: ${exerciseCount}/${exercise?.numberOfSets}`}</p>
-          </div>
-        )}
+        {generateView(viewConditionals, viewArgs)}
         {!exercise.finished && (
           <Button
-            label={
-              !isInProgress
-                ? 'Start'
-                : parseInt(exercise.numberOfSets) === exerciseCount
-                ? 'Finish'
-                : 'Next'
-            }
+            label={buttonProps?.label}
             disabled={!!inProgress && !isInProgress}
-            onClick={
-              !isInProgress
-                ? updateTrainingsProps.bind(null, { inProgress: id })
-                : parseInt(exercise.numberOfSets) === exerciseCount
-                ? onFinish.bind(null, {
-                    deleteTrainingsKey,
-                    updateExercise,
-                    docId,
-                    filterOutExercise,
-                    exercise,
-                    workout
-                  })
-                : onNext.bind(null, {
-                    exerciseCount,
-                    exercisePause,
-                    exercise,
-                    startTimer,
-                    updateTrainingsProps
-                  })
-            }
+            onClick={buttonProps?.onClick}
           />
         )}
       </div>
