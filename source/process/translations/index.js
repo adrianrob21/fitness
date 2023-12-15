@@ -1,13 +1,13 @@
-import i18next from "i18next";
+import i18next from 'i18next';
 
-import en from "./en";
+import en from './en';
 
 i18next.init({
-  lng: "en",
-  debug: true,
+  lng: 'en',
+  debug: process.env.NODE_ENV == 'development',
   resources: {
-    en,
-  },
+    en
+  }
 });
 
 export default i18next;
