@@ -19,7 +19,7 @@ import {
   requestFail,
   requestSuccess
 } from './app';
-import { getDayWorkouts, updateExercise } from './trainings';
+import { getDayWorkouts, updateExercise, updateExerciseSuccess } from './trainings';
 
 export default function* rootSaga() {
   yield all([
@@ -33,6 +33,7 @@ export default function* rootSaga() {
     //TRAININGS SLICE
     takeLatest(trainingsSliceTypes.getDayWorkouts, getDayWorkouts),
     takeLatest(trainingsSliceTypes.updateExercise, updateExercise),
+    takeLatest(trainingsSliceTypes.updateExerciseSuccess, updateExerciseSuccess),
 
     //USER SLICE
     takeLatest(userSliceTypes.getProfilePicture, getProfilePicture),

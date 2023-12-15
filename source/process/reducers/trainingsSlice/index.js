@@ -17,6 +17,7 @@ export const trainingsSlice = createSlice({
     getDayWorkouts: reduxMock,
     reset,
     updateExercise: reduxMock,
+    updateExerciseSuccess: reduxMock,
     updateProps
   }
 });
@@ -28,7 +29,10 @@ export const trainingsSliceTypes = {
   getDayWorkouts: trainingsSlice.actions.getDayWorkouts.type,
   reset: trainingsSlice.actions.reset.type,
   updateExercise: trainingsSlice.actions.updateExercise.type,
+  updateExerciseSuccess: trainingsSlice.actions.updateExerciseSuccess.type,
   updateProps: trainingsSlice.actions.updateProps.type
 };
+
+export const trainingsSelector = state => state.trainingsSlice;
 
 export default trainingsSlice.reducer;

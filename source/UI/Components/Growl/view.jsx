@@ -12,8 +12,6 @@ const Growl = ({
   updateGrowlProps = mock,
   growlType
 }) => {
-  console.log(growlType);
-
   useEffect(() => {
     if (growlActive) {
       const timeoutId = setTimeout(() => {

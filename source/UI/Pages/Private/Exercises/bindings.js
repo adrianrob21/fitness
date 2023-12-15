@@ -7,6 +7,6 @@ export const createTabs = ({ length }) =>
     label: I18n.t('trainings:trainingNumber', { count: index + 1 })
   }));
 
-export const onDateChange = ({ getDayWorkouts }, date) => {
-  getDayWorkouts({ selectedDate: formatDate({ date }) });
+export const onDateChange = ({ updateTrainingsProps = () => {} }, date) => {
+  updateTrainingsProps({ selectedDate: formatDate({ date }), selectedTab: 0 });
 };
