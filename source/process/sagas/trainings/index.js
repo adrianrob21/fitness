@@ -4,7 +4,7 @@ import { Api } from 'Api';
 import { WORKOUTS } from 'Repos';
 
 import { appSliceTypes } from 'Reducers/appSlice';
-import { trainingsSliceTypes, trainingsSelector } from 'Reducers/trainingsSlice';
+import { trainingsSelector, trainingsSliceTypes } from 'Reducers/trainingsSlice';
 
 export const getDayWorkouts = function* ({ payload }) {
   yield put({

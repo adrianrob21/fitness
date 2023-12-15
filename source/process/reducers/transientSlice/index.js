@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { findTrueValues } from 'Helpers';
 import validations from 'Helpers/validations';
 
-import { updateProps, deleteKey } from '../shared';
+import { deleteKey, updateProps } from '../shared';
 
 const initialState = {};
 

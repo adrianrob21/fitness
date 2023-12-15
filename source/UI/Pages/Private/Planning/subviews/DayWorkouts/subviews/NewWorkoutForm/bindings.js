@@ -1,4 +1,5 @@
 import { v4 as randomId } from 'uuid';
+
 import I18n from 'Translations';
 
 export const onChange = ({ updateExerciseProps, key }, value) => {

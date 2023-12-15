@@ -6,7 +6,7 @@ import { mock } from 'Helpers';
 
 import { passDate } from './bindings';
 
-const Calendar = ({ onChange = mock, disableDays = mock, defaultValue = new Date() }) => (
+const Calendar = ({ defaultValue = newDate(), disableDays = mock, onChange = mock }) => (
   <ReactCalendar
     defaultActiveStartDate={new Date()}
     className={'bg-darkGray text-white w-full lg:w-[350px]'}
@@ -19,8 +19,8 @@ const Calendar = ({ onChange = mock, disableDays = mock, defaultValue = new Date
 );
 
 Calendar.propTypes = {
-  disableDays: PropTypes.func,
   defaultValue: PropTypes.any,
+  disableDays: PropTypes.func,
   onChange: PropTypes.func
 };
 

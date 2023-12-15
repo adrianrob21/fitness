@@ -10,7 +10,7 @@ const Growl = ({
   growlActive = false,
   message = '',
   updateGrowlProps = mock,
-  growlType
+  growlType = 'error'
 }) => {
   useEffect(() => {
     if (growlActive) {

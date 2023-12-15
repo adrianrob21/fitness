@@ -1,7 +1,7 @@
 import { TrainingCard } from './subviews';
 
 export const renderTrainingCard = (
-  { trainingsState, workout, updateTrainingsProps, exercises, updateExercise, docId },
+  { docId, exercises, trainingsState, updateExercise, updateTrainingsProps, workout },
   exercise
 ) => (
   <TrainingCard
@@ -9,11 +9,11 @@ export const renderTrainingCard = (
     {...{
       docId,
       exercise,
-      workout,
       exercises,
       trainingsState,
       updateExercise,
-      updateTrainingsProps
+      updateTrainingsProps,
+      workout
     }}
   />
 );
