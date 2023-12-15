@@ -1,8 +1,12 @@
+import I18n from 'Translations';
 import { Button } from 'Components';
 
 const renderExerciseCard = exercise => (
-  <div className='w-24 h-24 bg-lightGray flex items-center justify-center'>
-    <p className='text-black'>{exercise.exerciseName}</p>
+  <div className='w-32 flex flex-col space-y-5 rounded-lg p-5 bg-black items-center justify-center'>
+    <p className='text-white text-xl text-center'>{exercise.exerciseName}</p>
+    <p className={'text-white'}>{`${I18n.t('exercise:sets')}: ${
+      exercise?.numberOfSets
+    }`}</p>
   </div>
 );
 
