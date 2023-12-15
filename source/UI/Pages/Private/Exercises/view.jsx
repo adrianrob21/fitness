@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import I18n from 'Translations';
 import { mock, formatDate } from 'Helpers';
 import { Calendar, Tabs, ChipsGroup } from 'Components';
 import { Card, MainLayout, ContentContainer } from 'Containers';
@@ -27,7 +28,9 @@ const Exercises = ({
       <div className={'w-full'}>
         <Card centerAll={!workouts.length}>
           <span className={'mb-10'}>
-            <p className={'text-white text-3xl'}>Muscle groups: </p>
+            <p className={'text-white text-3xl'}>{`${I18n.t(
+              'exercise:muscleGroups'
+            )}:`}</p>
             <ChipsGroup
               hasDelete={false}
               labels={workouts[selectedTab]?.muscles?.map(muscle => ({
