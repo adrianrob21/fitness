@@ -6,11 +6,12 @@ import { mock } from 'Helpers';
 
 import { passDate } from './bindings';
 
-const Calendar = ({ onChange = mock, disableDays = mock }) => (
+const Calendar = ({ defaultValue = newDate(), disableDays = mock, onChange = mock }) => (
   <ReactCalendar
     defaultActiveStartDate={new Date()}
     className={'bg-darkGray text-white w-full lg:w-[350px]'}
     calendarType={'gregory'}
+    defaultValue={defaultValue}
     tileDisabled={passDate.bind(null, { receiver: disableDays })}
     onChange={passDate.bind(null, { receiver: onChange })}
     locale={'en-US'}
@@ -18,6 +19,7 @@ const Calendar = ({ onChange = mock, disableDays = mock }) => (
 );
 
 Calendar.propTypes = {
+  defaultValue: PropTypes.any,
   disableDays: PropTypes.func,
   onChange: PropTypes.func
 };

@@ -11,7 +11,6 @@ export default connect(
     selectedTab: state.trainingsSlice?.selectedTab
   }),
   {
-    deleteTrainingsKey: trainingsSliceActions.deleteKey,
     getDayWorkouts: trainingsSliceActions.getDayWorkouts,
     updateExercise: trainingsSliceActions.updateExercise,
     updateTrainingsProps: trainingsSliceActions.updateProps

@@ -1,9 +1,11 @@
-export const deleteKey = (state, { payload }) => {
-  if (Object.keys(state).includes(payload)) {
-    delete state[payload];
+export const deleteKey = (state, { key }) => {
+  if (Object.keys(state).includes(key)) {
+    delete state[key];
   }
 };
 
-export const updateProps = (state, action) => {
-  return { ...state, ...action.payload };
+export const updateProps = (state, { payload }) => {
+  return { ...state, ...payload };
 };
+
+export const reduxMock = (state, _action) => state;

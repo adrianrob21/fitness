@@ -9,7 +9,7 @@ import { EmptyState } from './subviews';
 
 const PlannedWorkouts = ({ getDocuments = mock, plannedWorkouts = [] }) => {
   useEffect(() => {
-    getDocuments({ collectionPath: WORKOUTS });
+    getDocuments({ collectionPath: WORKOUTS, keyToUpdate: 'plannedWorkouts' });
   }, [getDocuments]);
 
   return !plannedWorkouts.length ? (

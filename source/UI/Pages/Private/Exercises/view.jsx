@@ -11,17 +11,20 @@ import { renderTrainingCard } from './pieces';
 import { createTabs, onDateChange } from './bindings';
 
 const Exercises = ({
-  deleteTrainingsKey = mock,
   getDayWorkouts = mock,
   trainingsState = {},
   updateExercise = mock,
   updateTrainingsProps = mock
 }) => {
-  useEffect(() => {
-    getDayWorkouts({ selectedDate: formatDate({ date: new Date() }) });
-  }, []);
+  const {
+    selectedTab = 0,
+    workouts = [],
+    selectedDate = formatDate({ date: new Date() })
+  } = trainingsState;
 
-  const { selectedTab = 0, workouts = [] } = trainingsState;
+  useEffect(() => {
+    getDayWorkouts({ selectedDate });
+  }, [getDayWorkouts, selectedDate]);
 
   return (
     <MainLayout>
@@ -50,9 +53,8 @@ const Exercises = ({
           ) : (
             <div
               className={'flex md:space-x-10 justify-center md:justify-start flex-wrap'}>
-              {workouts[selectedTab].exercises?.map(
+              {workouts[selectedTab]?.exercises?.map(
                 renderTrainingCard.bind(null, {
-                  deleteTrainingsKey,
                   trainingsState,
                   docId: workouts[selectedTab]?.id,
                   exercises: workouts[selectedTab]?.exercises,
@@ -66,7 +68,10 @@ const Exercises = ({
         </Card>
       </div>
       <ContentContainer>
-        <Calendar onChange={onDateChange.bind(null, { getDayWorkouts })} />
+        <Calendar
+          onChange={onDateChange.bind(null, { updateTrainingsProps })}
+          defaultValue={new Date(selectedDate)}
+        />
         <h1 className={'text-xl text-white'}>Today's inspiration</h1>
         <Card />
       </ContentContainer>
@@ -75,7 +80,6 @@ const Exercises = ({
 };
 
 Exercises.propTypes = {
-  deleteTrainingsKey: PropTypes.func,
   getDayWorkouts: PropTypes.func,
   trainingsState: PropTypes.object,
   updateExercise: PropTypes.func,

@@ -1,41 +1,32 @@
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 
 import { Api } from 'Api';
 import { WORKOUTS } from 'Repos';
 
-import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
+import { appSliceTypes } from 'Reducers/appSlice';
+import { trainingsSelector, trainingsSliceTypes } from 'Reducers/trainingsSlice';
 
 export const getDayWorkouts = function* ({ payload }) {
   yield put({
     type: Api.apiType,
     actions: {
-      success: { type: trainingsSliceTypes.getDayWorkoutsSuccess },
+      success: {
+        type: appSliceTypes.getDocumentsSuccess,
+        keyToUpdate: 'workouts',
+        path: 'dayWorkouts'
+      },
       options: {
         loading: {
           key: 'processing'
         }
       },
-      fail: { type: trainingsSliceTypes.getDayWorkoutsFail }
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.queries.getDayWorkouts({
       collectionPath: WORKOUTS,
       date: payload?.selectedDate
     })
   });
-};
-
-export const getDayWorkoutsSuccess = function* ({ payload }) {
-  const data = [];
-
-  payload?.forEach(doc => {
-    data.push({ id: doc.id, ...doc.data() });
-  });
-
-  yield put({ type: trainingsSliceTypes.updateProps, payload: { workouts: data } });
-};
-
-export const getDayWorkoutsFail = function* () {
-  yield console.log('Failed');
 };
 
 export const updateExercise = function* ({ payload }) {
@@ -48,7 +39,7 @@ export const updateExercise = function* ({ payload }) {
           key: 'processing'
         }
       },
-      fail: { type: trainingsSliceTypes.updateExerciseFail }
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.queries.updateExercise({
       collectionPath: WORKOUTS,
@@ -58,10 +49,14 @@ export const updateExercise = function* ({ payload }) {
   });
 };
 
-export const updateExerciseSuccess = function* ({ payload }) {
-  yield window.location.reload();
-};
+export const updateExerciseSuccess = function* () {
+  const state = yield select(trainingsSelector);
+  const selectedDate = state?.selectedDate;
 
-export const updateExerciseFail = function* () {
-  yield console.log('Failed');
+  yield put({ type: trainingsSliceTypes.deleteKey, key: 'inProgress' });
+  yield put({ type: trainingsSliceTypes.deleteKey, key: 'exerciseCount' });
+  yield put({
+    type: trainingsSliceTypes.getDayWorkouts,
+    payload: { selectedDate }
+  });
 };

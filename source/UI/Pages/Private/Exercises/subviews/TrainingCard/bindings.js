@@ -14,8 +14,8 @@ export const onNext = ({
   exercise,
   exerciseCount,
   exercisePause,
-  updateTrainingsProps,
-  startTimer
+  startTimer,
+  updateTrainingsProps
 }) => {
   if (exercisePause || !exercise?.series[`pause${exerciseCount}`]) {
     updateTrainingsProps({
@@ -30,20 +30,17 @@ export const onNext = ({
 };
 
 export const onFinish = ({
-  deleteTrainingsKey,
-  updateExercise,
   docId,
-  workout,
+  exercise,
   filterOutExercise,
-  exercise
+  updateExercise,
+  workout
 }) => {
   const body = {
     ...workout,
     exercises: [...filterOutExercise, { ...exercise, finished: true }]
   };
 
-  deleteTrainingsKey('inProgress');
-  deleteTrainingsKey('exerciseCount');
   updateExercise({ docId, body });
 };
 

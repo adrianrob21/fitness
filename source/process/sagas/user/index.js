@@ -2,23 +2,24 @@ import { put, select, call } from 'redux-saga/effects';
 
 import { Api } from 'Api';
 import { USERS } from 'Repos';
-import I18n from 'Translations';
 import { appSliceTypes } from 'Reducers/appSlice';
 import { userSliceTypes } from 'Reducers/userSlice';
-import { growlSliceTypes } from 'Reducers/growlSlice';
 import { transientSelector } from 'Reducers/transientSlice';
 
 export const register = function* ({ payload }) {
+  const processingKey = 'processing';
+
   yield put({
     type: Api.apiType,
     actions: {
       success: { type: userSliceTypes.registerSuccess },
       options: {
         loading: {
-          key: 'processing'
+          key: processingKey,
+          handleFinishLoading: false
         }
       },
-      fail: { type: userSliceTypes.registerFail }
+      fail: { type: appSliceTypes.requestFail, processingKey }
     },
     promise: Api.register({ email: payload.email, password: payload.password })
   });
@@ -44,7 +45,7 @@ export const registerSuccess = function* ({ payload }) {
   if (transient?.profileImage) {
     yield put({
       type: userSliceTypes.uploadProfilePicture,
-      payload: { userId: payload.user.uid }
+      userId: payload.user.uid
     });
   }
 
@@ -58,18 +59,7 @@ export const registerSuccess = function* ({ payload }) {
   });
 };
 
-export const registerFail = function* ({ payload }) {
-  const code = payload?.code?.split('/')[1];
-
-  const growl = {
-    growlType: 'error',
-    message: I18n.t(`errors:${code}`)
-  };
-
-  yield put({ type: growlSliceTypes.callGrowl, payload: growl });
-};
-
-export const uploadProfilePicture = function* ({ payload }) {
+export const uploadProfilePicture = function* ({ userId }) {
   const transient = yield select(transientSelector);
   const image = transient?.profileImage;
 
@@ -77,12 +67,12 @@ export const uploadProfilePicture = function* ({ payload }) {
     type: Api.apiType,
     actions: {
       success: { type: userSliceTypes.uploadProfilePictureSuccess },
-      fail: { type: userSliceTypes.registerFail }
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.queries.uploadFile({
       folderName: 'profileImages',
       image,
-      userId: payload.userId
+      userId
     })
   });
 };
@@ -97,20 +87,9 @@ export const login = function* ({ payload }) {
           key: 'processing'
         }
       },
-      fail: { type: userSliceTypes.loginFail }
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.login({ email: payload.email, password: payload.password })
-  });
-};
-
-export const loginSuccess = function* ({ payload }) {
-  yield put({
-    type: userSliceTypes.updateProps,
-    payload: {
-      email: payload.user.email,
-      userId: payload.user.uid,
-      userSession: true
-    }
   });
 };
 
@@ -118,35 +97,13 @@ export const getProfilePicture = function* ({ payload }) {
   yield call(Api.queries.getProfilePicture, payload);
 };
 
-export const loginFail = function* ({ payload }) {
-  const code = payload?.code?.split('/')[1];
-
-  const growl = {
-    growlType: 'error',
-    message: I18n.t(`errors:${code}`)
-  };
-
-  yield put({ type: growlSliceTypes.callGrowl, payload: growl });
-};
-
 export const logout = function* () {
   yield put({
     type: Api.apiType,
     actions: {
       success: { type: 'RESET_STATE' },
-      options: {
-        loading: {
-          key: 'processing'
-        }
-      },
-      fail: { type: userSliceTypes.logoutFail }
+      fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.logout()
   });
-};
-
-export const logoutFail = function* ({ payload }) {
-  const code = payload?.code?.split('/')[1];
-
-  yield alert(I18n.t(`errors:${code}`));
 };

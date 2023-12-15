@@ -2,13 +2,22 @@ import { Api } from 'Api';
 import { transientSliceTypes } from 'Reducers/transientSlice';
 
 const setLoading = ({ next, options, processing }) => {
-  if (!options.loading?.key) return;
+  const { key } = options?.loading || {};
+
+  if (!key) return;
 
   const value = processing ? options.value || true : false;
   next({
     type: transientSliceTypes.updateProps,
     payload: { [options.loading?.key]: value }
   });
+};
+
+const handleFinishLoading = ({ next, options }) => {
+  const { handleFinsh = true } = options?.loading || {};
+  if (!handleFinsh) return;
+
+  setLoading({ next, options, processing: false });
 };
 
 export const apiMiddleware = () => {
@@ -34,6 +43,6 @@ export const apiMiddleware = () => {
           return next({ ...rest, payload: error, ...fail });
         }
       })
-      .finally(setLoading.bind(null, { next, options, processing: false }));
+      .finally(handleFinishLoading.bind(null, { next, options }));
   };
 };

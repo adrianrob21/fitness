@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { findTrueValues } from 'Helpers';
 import validations from 'Helpers/validations';
 
-import { updateProps } from '../shared';
+import { deleteKey, updateProps } from '../shared';
 
 const initialState = {};
 
@@ -35,6 +35,7 @@ export const transientSlice = createSlice({
   name: 'transientSlice',
   initialState,
   reducers: {
+    deleteKey,
     reset,
     updateProps,
     updatePropsWithValidation
@@ -44,6 +45,7 @@ export const transientSlice = createSlice({
 export const transientSliceActions = transientSlice.actions;
 
 export const transientSliceTypes = {
+  deleteKey: transientSlice.actions.deleteKey.type,
   reset: transientSlice.actions.reset.type,
   updateProps: transientSlice.actions.updateProps.type,
   updatePropsWithValidation: transientSlice.actions.updatePropsWithValidation.type

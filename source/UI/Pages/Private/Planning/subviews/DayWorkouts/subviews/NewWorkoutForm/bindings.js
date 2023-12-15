@@ -1,5 +1,7 @@
 import { v4 as randomId } from 'uuid';
 
+import I18n from 'Translations';
+
 export const onChange = ({ updateExerciseProps, key }, value) => {
   updateExerciseProps({ [key]: value });
 };
@@ -43,7 +45,11 @@ export const onCreateWorkout = ({
   userId,
   workoutState
 }) => {
-  createDocument({ collection: 'workouts', data: { userId, ...workoutState, muscles } });
+  createDocument({
+    collection: 'workouts',
+    data: { userId, ...workoutState, muscles },
+    successMessage: I18n.t('success:workoutAdded')
+  });
   updatePlanningProps({ showForm: false });
   resetExercise();
   resetWorkout();

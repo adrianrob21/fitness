@@ -7,10 +7,7 @@ import { Button } from 'Components';
 
 import { filterOutId, getButtonProps, generateView } from './bindings';
 
-import consoleState from './bindings';
-
 const TrainingCard = ({
-  deleteTrainingsKey = mock,
   docId = '',
   exercise = {},
   exercises = [],
@@ -30,7 +27,6 @@ const TrainingCard = ({
   const filterOutExercise = exercises.filter(filterOutId.bind(null, { id: exercise.id }));
 
   const buttonArgs = {
-    deleteTrainingsKey,
     docId,
     exercise,
     exercise,
@@ -88,7 +84,6 @@ const TrainingCard = ({
 };
 
 TrainingCard.propTypes = {
-  deleteTrainingsKey: PropTypes.func,
   docId: PropTypes.string,
   exercise: PropTypes.object,
   exercises: PropTypes.array,
