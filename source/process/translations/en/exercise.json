@@ -1,7 +1,12 @@
 {
   "anotherInProgress": "Another exercise is in progress.",
   "completed": "Completed!",
+  "finish": "Finish",
+  "next": "Next",
   "pastExercise": "This is a past exercise.",
+  "pause": "Pause",
   "repetitions": "Repetitions",
-  "sets": "Sets"
+  "sets": "Sets",
+  "start": "Start",
+  "muscleGroups": "Muscle groups"
 }

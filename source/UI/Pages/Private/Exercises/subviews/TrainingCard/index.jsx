@@ -70,7 +70,9 @@ const TrainingCard = ({
       className={
         'flex flex-col mt-10 justify-center bg-black w-48 items-center rounded-3xl p-5 space-y-5'
       }>
-      <p className={'text-white'}>{exercise.exerciseName}</p>
+      <p className={'text-white text-xl font-semibold text-center'}>
+        {exercise.exerciseName}
+      </p>
       <div>
         {generateView(viewConditionals, viewArgs)}
         {!exercise.finished && (

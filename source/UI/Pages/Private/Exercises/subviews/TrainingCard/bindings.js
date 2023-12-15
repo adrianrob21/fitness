@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import I18n from 'Translations';
 
 import {
   renderAnotherInProgress,
@@ -55,22 +55,22 @@ export const getButtonProps = (
 ) => {
   if (notInProgress)
     return {
-      label: 'Start',
+      label: I18n.t('exercise:start'),
       onClick: updateTrainingsProps.bind(null, { inProgress: args.id })
     };
   if (beforeFinish)
     return {
-      label: 'Finish',
+      label: I18n.t('exercise:finish'),
       onClick: onFinish.bind(null, args)
     };
   return {
-    label: 'Next',
+    label: I18n.t('exercise:next'),
     onClick: onNext.bind(null, args)
   };
 };
 
 export const generateView = (conditions, args) => {
-  const { isPast, isFinished, anotherInProgress, exercisePause } = conditions;
+  const { anotherInProgress, exercisePause, isFinished, isPast } = conditions;
 
   if (isPast) return renderPast();
   if (isFinished) return renderFinished();

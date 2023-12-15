@@ -1,5 +1,6 @@
-import { classNames } from 'Helpers';
 import { v4 as randomKey } from 'uuid';
+
+import { classNames } from 'Helpers';
 
 export const renderChip = (
   { hasDelete, keyToUpdate, selectedValues, updateProps },
