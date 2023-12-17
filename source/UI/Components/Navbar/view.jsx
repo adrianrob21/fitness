@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
-import { mock } from 'Helpers';
+import { mock, classNames } from 'Helpers';
 import routes from 'Navigator/routes';
 
 import Icon from './../Icon';
@@ -19,6 +19,7 @@ const classes = {
 const Navbar = ({
   getProfilePicture = mock,
   logout = mock,
+  processingProfilePicture = false,
   profilePicture = '',
   userId = ''
 }) => {
@@ -31,7 +32,11 @@ const Navbar = ({
   return (
     <div className={`${classes.mobileContainer} ${classes.mdContainer}`}>
       <img
-        className={'h-14 w-14 rounded-full object-cover md:mt-10'}
+        className={classNames(
+          'h-14 w-14 rounded-full object-cover md:mt-10 transition-all',
+          processingProfilePicture && 'opacity-0',
+          !processingProfilePicture && 'opacity-100'
+        )}
         src={profilePicture}
       />
 
@@ -51,6 +56,7 @@ const Navbar = ({
 Navbar.propTypes = {
   getProfilePicture: PropTypes.func,
   logout: PropTypes.func,
+  processingProfilePicture: PropTypes.bool,
   profilePicture: PropTypes.string,
   userId: PropTypes.string
 };

@@ -6,7 +6,8 @@ import PlannedWorkouts from './view';
 
 export default connect(
   state => ({
-    plannedWorkouts: state.planningSlice?.plannedWorkouts
+    plannedWorkouts: state.planningSlice?.plannedWorkouts,
+    processingPlannedWorkouts: state.transientSlice?.processingPlannedWorkouts
   }),
   {
     getDocuments: appSliceActions.getDocuments

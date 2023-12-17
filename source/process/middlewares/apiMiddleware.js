@@ -14,8 +14,9 @@ const setLoading = ({ next, options, processing }) => {
 };
 
 const handleFinishLoading = ({ next, options }) => {
-  const { handleFinsh = true } = options?.loading || {};
-  if (!handleFinsh) return;
+  const { handleFinish = true } = options?.loading || {};
+
+  if (!handleFinish) return;
 
   setLoading({ next, options, processing: false });
 };

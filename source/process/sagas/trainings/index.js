@@ -36,7 +36,7 @@ export const updateExercise = function* ({ payload }) {
       success: { type: trainingsSliceTypes.updateExerciseSuccess },
       options: {
         loading: {
-          key: 'processing'
+          key: 'processingExerciseUpdate'
         }
       },
       fail: { type: appSliceTypes.requestFail }

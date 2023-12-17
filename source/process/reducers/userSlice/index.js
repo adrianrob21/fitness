@@ -13,11 +13,16 @@ const loginSuccess = (state, { payload }) => ({
   userSession: true
 });
 
+const getProfilePictureSuccess = (state, { payload }) => {
+  state.profilePicture = payload;
+};
+
 export const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
     getProfilePicture: reduxMock,
+    getProfilePictureSuccess,
     login: reduxMock,
     loginSuccess,
     logout: reduxMock,
@@ -34,7 +39,7 @@ export const userSliceActions = userSlice.actions;
 
 export const userSliceTypes = {
   getProfilePicture: userSlice.actions.getProfilePicture.type,
-  getProfilePictureSuccess: userSlice.actions.getProfilePicture.type,
+  getProfilePictureSuccess: userSlice.actions.getProfilePictureSuccess.type,
   login: userSlice.actions.login.type,
   logout: userSlice.actions.logout.type,
   loginSuccess: userSlice.actions.loginSuccess.type,
