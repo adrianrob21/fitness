@@ -57,6 +57,11 @@ export const getDocuments = function* ({ payload }) {
         path: payload.collectionPath,
         keyToUpdate: payload.keyToUpdate
       },
+      options: {
+        loading: {
+          key: payload.processingKey || 'processing'
+        }
+      },
       fail: { type: appSliceTypes.requestFail }
     },
     promise: Api.getDocuments({

@@ -94,7 +94,19 @@ export const login = function* ({ payload }) {
 };
 
 export const getProfilePicture = function* ({ payload }) {
-  yield call(Api.queries.getProfilePicture, payload);
+  yield put({
+    type: Api.apiType,
+    actions: {
+      success: {
+        type: userSliceTypes.getProfilePictureSuccess
+      },
+      options: {
+        loading: { key: 'processingProfilePicture' }
+      },
+      fail: { type: appSliceTypes.requestFail }
+    },
+    promise: Api.queries.getProfilePicture(payload)
+  });
 };
 
 export const logout = function* () {

@@ -6,6 +6,7 @@ import Navbar from './view';
 
 export default connect(
   state => ({
+    processingProfilePicture: state.transientSlice?.processingProfilePicture,
     profilePicture: state.userSlice?.profilePicture,
     userId: state.userSlice?.userId,
     userSession: state.userSlice?.userSession

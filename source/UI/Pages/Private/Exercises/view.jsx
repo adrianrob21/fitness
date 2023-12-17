@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import I18n from 'Translations';
 import { mock, formatDate } from 'Helpers';
@@ -12,6 +14,7 @@ import { createTabs, onDateChange } from './bindings';
 
 const Exercises = ({
   getDayWorkouts = mock,
+  processingExerciseUpdate = false,
   trainingsState = {},
   updateExercise = mock,
   updateTrainingsProps = mock
@@ -34,6 +37,7 @@ const Exercises = ({
             <p className={'text-white text-3xl'}>{`${I18n.t(
               'exercise:muscleGroups'
             )}:`}</p>
+
             <ChipsGroup
               hasDelete={false}
               labels={workouts[selectedTab]?.muscles?.map(muscle => ({
@@ -48,19 +52,28 @@ const Exercises = ({
               updateProps={updateTrainingsProps}
             />
           )}
-          {!workouts.length ? (
+          {processingExerciseUpdate ? (
+            <div className={'flex h-full w-full justify-center items-center'}>
+              <FontAwesomeIcon
+                icon={faDumbbell}
+                spin
+                style={{ color: '#ffffff', width: '10rem', height: '10rem' }}
+              />
+            </div>
+          ) : !workouts.length ? (
             <EmptyState />
           ) : (
             <div
               className={'flex md:space-x-10 justify-center md:justify-start flex-wrap'}>
               {workouts[selectedTab]?.exercises?.map(
                 renderTrainingCard.bind(null, {
-                  trainingsState,
                   docId: workouts[selectedTab]?.id,
                   exercises: workouts[selectedTab]?.exercises,
-                  workout: workouts[selectedTab],
+                  processingExerciseUpdate,
+                  trainingsState,
                   updateExercise,
-                  updateTrainingsProps
+                  updateTrainingsProps,
+                  workout: workouts[selectedTab]
                 })
               )}
             </div>
@@ -81,6 +94,7 @@ const Exercises = ({
 
 Exercises.propTypes = {
   getDayWorkouts: PropTypes.func,
+  processingExerciseUpdate: PropTypes.bool,
   trainingsState: PropTypes.object,
   updateExercise: PropTypes.func,
   updateTrainingsProps: PropTypes.func

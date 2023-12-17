@@ -45,13 +45,7 @@ const uploadFile = ({ folderName, image, userId }) => {
 const getProfilePicture = userId => {
   const profilePictureRef = ref(storage, `profileImages/${userId}/profileImage.png`);
 
-  getDownloadURL(profilePictureRef)
-    .then(profile => {
-      store.dispatch(userSliceActions.updateProps({ profilePicture: profile }));
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  return getDownloadURL(profilePictureRef);
 };
 
 export default { getDayWorkouts, getProfilePicture, updateExercise, uploadFile };

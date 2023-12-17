@@ -6,9 +6,10 @@ import Exercises from './view';
 
 export default connect(
   state => ({
+    processingExerciseUpdate: state.transientSlice.processingExerciseUpdate,
+    selectedTab: state.trainingsSlice?.selectedTab,
     trainingsState: state?.trainingsSlice || {},
-    workouts: state.trainingsSlice?.workouts,
-    selectedTab: state.trainingsSlice?.selectedTab
+    workouts: state.trainingsSlice?.workouts
   }),
   {
     getDayWorkouts: trainingsSliceActions.getDayWorkouts,
