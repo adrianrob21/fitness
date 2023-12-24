@@ -10,6 +10,7 @@ import Dropdown from './Dropdown';
 import PhotoInput from './PhotoInput';
 import ChipsGroup from './ChipsGroup';
 import StepCounter from './StepCounter';
+import PhotosCarousel from './PhotosCarousel';
 
 export {
   Button,
@@ -22,6 +23,7 @@ export {
   Input,
   Navbar,
   PhotoInput,
+  PhotosCarousel,
   StepCounter,
   Tabs
 };
