@@ -12,7 +12,8 @@ import { EmptyState } from './subviews';
 const PlannedWorkouts = ({
   getDocuments = mock,
   plannedWorkouts = [],
-  processingPlannedWorkouts = false
+  processingPlannedWorkouts = false,
+  updatePlanningProps = mock
 }) => {
   useEffect(() => {
     getDocuments({
@@ -31,7 +32,7 @@ const PlannedWorkouts = ({
       />
     </div>
   ) : !plannedWorkouts.length ? (
-    <EmptyState />
+    <EmptyState updateProps={updatePlanningProps} />
   ) : (
     <div className={'md:flex flex w-full h-full flex-col md:flex-wrap md:flex-row'}>
       {plannedWorkouts?.map(renderWorkoutCard)}
@@ -42,7 +43,8 @@ const PlannedWorkouts = ({
 PlannedWorkouts.propTypes = {
   getDocuments: PropTypes.func,
   plannedWorkouts: PropTypes.array,
-  processingPlannedWorkouts: PropTypes.bool
+  processingPlannedWorkouts: PropTypes.bool,
+  updatePlanningProps: PropTypes.func
 };
 
 export default PlannedWorkouts;
