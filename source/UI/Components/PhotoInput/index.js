@@ -1,26 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { Button } from 'Components';
 import { classNames, mock } from 'Helpers';
 
-const shapes = {
-  circle: 'rounded-full',
-  square: 'rounded-xl'
-};
-
-const handleOnChange = (onChange, e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      onChange(reader.result);
-    };
-    reader.onerror = error => {
-      console.log('Error: ', error);
-    };
-  }
-};
+import { handleOnChange, shapes } from './bindings';
 
 const PhotoInput = ({ onChange = mock, shape = 'circle', source = '' }) => (
   <>
