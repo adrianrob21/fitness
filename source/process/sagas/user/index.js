@@ -69,7 +69,7 @@ export const uploadProfilePicture = function* ({ userId }) {
       success: { type: userSliceTypes.uploadProfilePictureSuccess },
       fail: { type: appSliceTypes.requestFail }
     },
-    promise: Api.queries.uploadFile({
+    promise: Api.queries.uploadProfilePicture({
       folderName: 'profileImages',
       image,
       userId

@@ -27,7 +27,7 @@ export const renderPhoto = ({ selectedIndex, lastIndex }, photo, index) => {
       src={photo}
       key={index}
       className={classNames(
-        'w-64 h-64 transition-all duration-500',
+        'w-64 h-64 transition-all duration-500 rounded-xl',
         selectedIndex !== index && 'scale-100 opacity-60',
         selectedIndex === index && 'scale-110 opacity-100',
         (index > selectedIndex + numberOfPhotosFirst ||

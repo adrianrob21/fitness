@@ -4,6 +4,7 @@ import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/fire
 
 import { base64toBlob } from 'Helpers';
 import { userSliceActions } from 'Reducers/userSlice';
+import { mediaSliceActions } from 'Reducers/mediaSlice';
 
 import { db, storage } from './firebaseConfig';
 
@@ -27,7 +28,7 @@ const updateExercise = ({ collectionPath, docId, body }) => {
   return updateDoc(docRef, body);
 };
 
-const uploadFile = ({ folderName, image, userId }) => {
+const uploadProfilePicture = ({ folderName, image, userId }) => {
   const imageRef = ref(storage, `${folderName}/${userId}/profileImage.png`);
   const formatedImage = image.replace(/^data:image\/(jpeg|png|gif|bmp);base64,/, '');
 
@@ -42,10 +43,56 @@ const uploadFile = ({ folderName, image, userId }) => {
   });
 };
 
+const uploadFile = ({ folderName, image, userId, imageName }) => {
+  const regex = /^data:image\/(png|jpeg|jpg|gif);base64/;
+  const formatedImage = image.replace(/^data:image\/(jpeg|png|gif|bmp);base64,/, '');
+
+  let fileExtension = 'png';
+
+  if (regex.test(image)) {
+    fileExtension = image.match(regex);
+  }
+
+  const blob = base64toBlob(formatedImage);
+
+  const fileRef = ref(
+    storage,
+    `${folderName}/${userId}/${imageName}.${fileExtension[1]}`
+  );
+
+  const uploadTask = uploadBytesResumable(fileRef, blob);
+
+  uploadTask.on('state_changed', null, null, () => {
+    store.dispatch(
+      mediaSliceActions.getMediaURL({
+        fileName: imageName,
+        folderName: folderName,
+        userId,
+        fileExtension: fileExtension[1]
+      })
+    );
+
+    return;
+  });
+};
+
 const getProfilePicture = userId => {
   const profilePictureRef = ref(storage, `profileImages/${userId}/profileImage.png`);
 
   return getDownloadURL(profilePictureRef);
 };
 
-export default { getDayWorkouts, getProfilePicture, updateExercise, uploadFile };
+const getMediaURL = ({ fileName, folderName, userId, fileExtension }) => {
+  const file = ref(storage, `${folderName}/${userId}/${fileName}.${fileExtension}`);
+
+  return getDownloadURL(file);
+};
+
+export default {
+  getDayWorkouts,
+  getProfilePicture,
+  updateExercise,
+  getMediaURL,
+  uploadFile,
+  uploadProfilePicture
+};

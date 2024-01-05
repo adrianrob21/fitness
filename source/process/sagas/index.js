@@ -2,6 +2,7 @@ import { all, takeLatest } from 'redux-saga/effects';
 
 import { appSliceTypes } from 'Reducers/appSlice';
 import { userSliceTypes } from 'Reducers/userSlice';
+import { mediaSliceTypes } from 'Reducers/mediaSlice';
 import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
 
 import {
@@ -20,6 +21,7 @@ import {
   requestSuccess
 } from './app';
 import { getDayWorkouts, updateExercise, updateExerciseSuccess } from './trainings';
+import { getMediaURL, getMediaURLSuccess, uploadFile, uploadFileSuccess } from './media';
 
 export default function* rootSaga() {
   yield all([
@@ -29,6 +31,12 @@ export default function* rootSaga() {
     takeLatest(appSliceTypes.requestFail, requestFail),
     takeLatest(appSliceTypes.requestSuccess, requestSuccess),
     takeLatest(appSliceTypes.getDocumentsSuccess, getDocumentsSuccess),
+
+    //MEDIA SLICE
+    takeLatest(mediaSliceTypes.getMediaURL, getMediaURL),
+    takeLatest(mediaSliceTypes.getMediaURLSuccess, getMediaURLSuccess),
+    takeLatest(mediaSliceTypes.uploadFile, uploadFile),
+    takeLatest(mediaSliceTypes.uploadFileSuccess, uploadFileSuccess),
 
     //TRAININGS SLICE
     takeLatest(trainingsSliceTypes.getDayWorkouts, getDayWorkouts),

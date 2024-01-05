@@ -39,13 +39,16 @@ export const requestFail = function* ({ processingKey, payload }) {
   }
 };
 
-export const requestSuccess = function* ({ message = '' }) {
+export const requestSuccess = function* ({ message = '', processingKey = '' }) {
   const growl = {
     growlType: 'success',
     message
   };
 
   yield put({ type: growlSliceTypes.callGrowl, payload: growl });
+  if (processingKey) {
+    yield put({ type: transientSliceTypes.deleteKey, key: processingKey });
+  }
 };
 
 export const getDocuments = function* ({ payload }) {

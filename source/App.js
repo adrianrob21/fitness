@@ -4,7 +4,7 @@ import { Growl } from 'Components';
 const App = () => (
   <>
     <Growl />
-    <div className={'w-full max-h-screen h-screen'}>
+    <div className={'w-full h-lvh'}>
       <Navigator />;
     </div>
   </>
