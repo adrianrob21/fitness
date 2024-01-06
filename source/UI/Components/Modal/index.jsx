@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { mock, classNames } from 'Helpers';
 
 const Modal = ({
+  children = null,
   modalName = '',
   setVisible = mock,
-  visible = true,
-  children = null
+  visible = true
 }) => {
   return (
     <>
