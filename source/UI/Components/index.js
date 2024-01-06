@@ -2,6 +2,7 @@ import Icon from './Icon';
 import Tabs from './Tabs';
 import Growl from './Growl';
 import Input from './Input';
+import Modal from './Modal';
 import Button from './Button';
 import Navbar from './Navbar';
 import Calendar from './Calendar';
@@ -21,6 +22,7 @@ export {
   Growl,
   Icon,
   Input,
+  Modal,
   Navbar,
   PhotoInput,
   PhotosCarousel,
