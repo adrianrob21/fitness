@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { mock, classNames } from 'Helpers';
+import { classNames, mock } from 'Helpers';
 
 const Modal = ({
   children = null,
