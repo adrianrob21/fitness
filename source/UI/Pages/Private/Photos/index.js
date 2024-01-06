@@ -8,6 +8,7 @@ export default connect(
   state => ({
     selectedImage: state.mediaSlice?.selectedImage,
     processingFile: state.transientSlice?.processingFile,
+    photos: state.mediaSlice?.photos,
     selectedDate: state.mediaSlice?.selectedDate
   }),
   {

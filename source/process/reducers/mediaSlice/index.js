@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { deleteKey, reduxMock, updateProps } from '../shared';
 
 const initialState = {
-  selectedImage: 'ceva'
+  selectedImage: ''
 };
 
 const reset = () => initialState;

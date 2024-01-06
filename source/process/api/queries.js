@@ -1,4 +1,5 @@
 import { store } from 'ReduxStore';
+import { v4 as randomKey } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 
@@ -54,18 +55,16 @@ const uploadFile = ({ folderName, image, userId, imageName }) => {
   }
 
   const blob = base64toBlob(formatedImage);
+  const fileName = `${imageName}=${randomKey()}`;
 
-  const fileRef = ref(
-    storage,
-    `${folderName}/${userId}/${imageName}.${fileExtension[1]}`
-  );
+  const fileRef = ref(storage, `${folderName}/${userId}/${fileName}.${fileExtension[1]}`);
 
   const uploadTask = uploadBytesResumable(fileRef, blob);
 
   uploadTask.on('state_changed', null, null, () => {
     store.dispatch(
       mediaSliceActions.getMediaURL({
-        fileName: imageName,
+        fileName,
         folderName: folderName,
         userId,
         fileExtension: fileExtension[1]

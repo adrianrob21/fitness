@@ -14,7 +14,9 @@ export const createDocument = function* ({ payload }) {
     actions: {
       success: {
         type: appSliceTypes.requestSuccess,
-        message: payload.successMessage
+        message: payload.successMessage,
+        processingKey: payload.processingKey,
+        onSuccess: payload.onSuccess
       },
       fail: { type: appSliceTypes.requestFail }
     },
@@ -39,13 +41,20 @@ export const requestFail = function* ({ processingKey, payload }) {
   }
 };
 
-export const requestSuccess = function* ({ message = '', processingKey = '' }) {
+export const requestSuccess = function* ({
+  message = '',
+  onSuccess = undefined,
+  processingKey = ''
+}) {
   const growl = {
     growlType: 'success',
     message
   };
 
   yield put({ type: growlSliceTypes.callGrowl, payload: growl });
+  if (onSuccess) {
+    yield put(onSuccess);
+  }
   if (processingKey) {
     yield put({ type: transientSliceTypes.deleteKey, key: processingKey });
   }

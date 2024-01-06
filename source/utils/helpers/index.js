@@ -1,5 +1,6 @@
 import moment from 'moment';
 
+import { mediaSliceTypes } from 'Reducers/mediaSlice';
 import { planningSliceTypes } from 'Reducers/planningSlice';
 import { trainingsSliceTypes } from 'Reducers/trainingsSlice';
 
@@ -35,11 +36,14 @@ export const base64toBlob = (base64String, contentType = 'image/png') => {
 };
 
 export const updateStateKey = (sliceOrRepo, keyToUpdate, data) => {
+  const payload = { [keyToUpdate]: data };
+
   const keys = {
-    workouts: { type: planningSliceTypes?.updateProps, payload: { [keyToUpdate]: data } },
+    workouts: { type: planningSliceTypes?.updateProps, payload },
+    bodyPhotos: { type: mediaSliceTypes?.updateProps, payload },
     dayWorkouts: {
       type: trainingsSliceTypes?.updateProps,
-      payload: { [keyToUpdate]: data }
+      payload
     }
   };
 
